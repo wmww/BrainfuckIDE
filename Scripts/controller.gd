@@ -3,9 +3,12 @@ extends Node
 export(NodePath) var data_node
 
 var source = ""
-var execIndex=0
+var execIndex = 0
+var stack = []
+var dataManager
 
 func _ready():
+	dataManager = get_node(data_node)
 	set_process(true)
 
 func addBFSource(sourceIn):
@@ -16,7 +19,6 @@ func _process(delta):
 	runNextOp()
 
 func runNextOp():
-	var dataManager = get_node(data_node)
 	
 	var isComment = true
 	while isComment:
@@ -35,6 +37,19 @@ func runNextOp():
 			dataManager.movePtr(1)
 		elif c == "<":
 			dataManager.movePtr(-1)
+		elif c == "[":
+			if dataManager.getVal() == 0:
+				execIndex = findCloseBrace(execIndex)-1
+			else:
+				stack.append(execIndex)
+		elif c == "]":
+			if stack.size() == 0:
+				throwError("']' without '['")
+			else:
+				if dataManager.getVal() == 0:
+					stack.pop_back()
+				else:
+					execIndex = stack.back()
 		else:
 			isComment = true
 		
@@ -42,3 +57,28 @@ func runNextOp():
 			dataManager.blinkOp(c)
 		
 		execIndex += 1
+
+func findCloseBrace(start):
+	if source[start] != "[":
+		throwError("findCloseBrace called without the starting point being '['")
+		return
+	
+	var count = 1
+	var i = start + 1
+	
+	while count > 0:
+		if i > source.length():
+			print("could not find matching '['")
+			return source.length()
+		
+		if source[i] == "[":
+			count += 1
+		elif source[i] == "]":
+			count -= 1
+		
+		i += 1
+	
+	return i
+
+func throwError(msg):
+	print("ERROR: " + msg)

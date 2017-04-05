@@ -13,7 +13,6 @@ func _process(delta):
 		var a = labelAnim.get()
 		if a > 1:
 			a = 2-a
-		print(a)
 		get_node("marker_label").set_opacity(a)
 	
 	if !posAnim.done():

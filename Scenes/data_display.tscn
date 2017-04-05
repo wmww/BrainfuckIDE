@@ -27,7 +27,7 @@ margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
 
-[node name="marker" type="VBoxContainer" parent="."]
+[node name="marker" type="Control" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
@@ -37,7 +37,6 @@ margin/left = 89.0
 margin/top = 178.0
 margin/right = 329.0
 margin/bottom = 483.0
-alignment = 0
 script/script = ExtResource( 2 )
 
 [node name="polygon_control" type="Control" parent="marker"]
@@ -73,10 +72,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 84.0
-margin/right = 240.0
-margin/bottom = 305.0
+margin/left = -200.0
+margin/top = 75.0
+margin/right = 200.0
+margin/bottom = 300.0
 custom_fonts/font = ExtResource( 3 )
 text = "+"
 align = 1

@@ -39,6 +39,9 @@ func addVal(amount):
 func getVal():
 	return data[i]
 
+func blinkOp(opText):
+	get_node("marker").blink(opText, 0.4)
+
 func addElemDisplay():
 	var elem = ElemScene.instance()
 	get_node("data_holder").add_child(elem)

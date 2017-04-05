@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Control
 
 const AnimData = preload("anim_data.gd")
 var labelAnim = AnimData.new(0)
@@ -11,8 +11,9 @@ func _process(delta):
 	if !labelAnim.done():
 		labelAnim.advance(delta)
 		var a = labelAnim.get()
-		if a>1:
-			a=1-a
+		if a > 1:
+			a = 2-a
+		print(a)
 		get_node("marker_label").set_opacity(a)
 	
 	if !posAnim.done():

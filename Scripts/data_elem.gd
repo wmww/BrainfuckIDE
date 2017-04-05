@@ -7,7 +7,7 @@ var labelAnim = AnimData.new(val)
 const labelOffset=Vector2(-200, -200)
 
 func _ready():
-	
+	_process(1)
 	set_process(true)
 
 func _process(delta):

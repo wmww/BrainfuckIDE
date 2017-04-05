@@ -18,9 +18,12 @@ func _process(delta):
 func runNextOp():
 	var dataManager = get_node(data_node)
 	
-	while true:
+	var isComment = true
+	while isComment:
 		if execIndex >= source.length():
 			return
+		
+		isComment = false
 			
 		var c = source[execIndex]
 		
@@ -33,6 +36,9 @@ func runNextOp():
 		elif c == "<":
 			dataManager.movePtr(-1)
 		else:
-			pass
+			isComment = true
+		
+		if !isComment:
+			dataManager.blinkOp(c)
 		
 		execIndex += 1

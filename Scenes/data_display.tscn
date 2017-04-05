@@ -55,7 +55,7 @@ margin/bottom = 80.0
 [node name="marker_polygon" type="Polygon2D" parent="marker/polygon_control"]
 
 transform/scale = Vector2( 2, 2 )
-polygon = Vector2Array( -100, 0, -80, 0, -80, 20, 80, 20, 80, 0, 100, 0, 100, 40, -100, 40 )
+polygon = Vector2Array( -100, 0, -85, 0, -85, 25, 85, 25, 85, 0, 100, 0, 100, 40, -100, 40 )
 uv = Vector2Array(  )
 color = Color( 0.217896, 0.996094, 0.704269, 1 )
 vertex_colors = ColorArray(  )

@@ -3,7 +3,7 @@ extends Control
 var data
 var elems
 var i=0
-var elemWidth=400
+var elemSize=Vector2(300, 200)
 const ElemScene = preload("res://Scenes/data_elem.tscn")
 
 func _ready():
@@ -26,15 +26,15 @@ func movePtr(offset):
 	while elems.size() <= i:
 		addElemDisplay()
 	
-	moveMarker(0.3)
+	moveMarker(0.4)
 
 func moveMarker(time):
-	var pos = Vector2(elemWidth*(i+0.5), elemWidth)
+	var pos = Vector2(elemSize.x*(i+0.5), elemSize.y)
 	get_node("marker").moveTo(pos, time)
 
 func addVal(amount):
 	data[i]+=amount
-	elems[i].changeVal(data[i], 0)
+	elems[i].changeVal(data[i], 0.4)
 	
 func getVal():
 	return data[i]
@@ -42,7 +42,8 @@ func getVal():
 func addElemDisplay():
 	var elem = ElemScene.instance()
 	get_node("data_holder").add_child(elem)
-	elem.set_pos(Vector2(elems.size()*elemWidth, 0))
+	elem.set_pos(Vector2(elems.size()*elemSize.x, 0))
+	elem.set_size(elemSize)
 	elems.push_back(elem)
 
 func throwError(msg):

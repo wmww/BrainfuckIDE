@@ -23,10 +23,31 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+margin/left = -200.0
+margin/top = -200.0
+margin/right = -200.0
+margin/bottom = -200.0
+custom_fonts/font = ExtResource( 2 )
+text = "1"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="label1" type="Label" parent="."]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -200.0
+margin/top = -200.0
+margin/right = -200.0
+margin/bottom = -200.0
 custom_fonts/font = ExtResource( 2 )
 text = "0"
 align = 1

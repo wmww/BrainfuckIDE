@@ -10,9 +10,9 @@
 
 anchor/right = 1
 anchor/bottom = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
+margin/left = 80.0
+margin/top = 80.0
+margin/right = 80.0
 margin/bottom = 0.5
 
 [node name="controller" type="Node" parent="."]

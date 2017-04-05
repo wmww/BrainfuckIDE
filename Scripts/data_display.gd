@@ -1,16 +1,13 @@
 extends Control
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+export(Font) var array_font
 
 var data=[0]
+var labels=[]
 var i=0
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
-	pass
+	updateDisplay()
 
 func movePtr(offset):
 	i+=offset
@@ -29,11 +26,25 @@ func getVal():
 	return data
 
 func updateDisplay():
-	var dataStr=""
-	for i in data:
-		print(i)
-		dataStr += str(i) + "    "
-	get_node("data_label").set_bbcode(dataStr)
+	#var dataStr=""
+	for j in range(0, data.size()):
+		#print(data[i])
+		#dataStr += str(data[i]) + "    "
+		while j >= labels.size():
+			addLabel()
+		labels[j].set_text(str(data[j]))
+	
+	get_node("data_container/h_box/current_marker").set_pos(labels[i].get_pos())
+	
+	#get_node("data_label").set_bbcode(dataStr)
+
+func addLabel():
+	var label = Label.new()
+	label.add_font_override("font", array_font)
+	label.set_custom_minimum_size(Vector2(200, 0))
+	get_node("data_container/h_box").add_child(label)
+	labels.push_back(label)
+	get_node("data_container/h_box").show()
 
 func throwError(msg):
 	print("ERROR: " + msg)

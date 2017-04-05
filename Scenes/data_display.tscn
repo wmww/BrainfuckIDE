@@ -11,9 +11,10 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 800.0
+margin/right = 796.0
 margin/bottom = 200.0
 script/script = ExtResource( 1 )
+array_font = ExtResource( 2 )
 
 [node name="data_label" type="RichTextLabel" parent="."]
 
@@ -23,12 +24,53 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 71.0
 margin/top = 27.0
-margin/right = 435.0
-margin/bottom = 142.0
+margin/right = 938.0
+margin/bottom = 200.0
 custom_fonts/mono_font = ExtResource( 2 )
 custom_fonts/normal_font = ExtResource( 2 )
 bbcode/enabled = false
 bbcode/bbcode = "0 0 0 0 "
 visible_characters = -1
+
+[node name="data_container" type="ScrollContainer" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 244.0
+margin/top = 142.0
+margin/right = 794.0
+margin/bottom = 354.0
+scroll/horizontal = true
+scroll/vertical = false
+
+[node name="h_box" type="HBoxContainer" parent="data_container"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+alignment = 0
+
+[node name="current_marker" type="Polygon2D" parent="data_container/h_box"]
+
+transform/pos = Vector2( 125.947, 56.6981 )
+transform/scale = Vector2( 0.5, 0.5 )
+polygon = Vector2Array( -60, 0, -40, 0, -40, 20, 40, 20, 40, 0, 60, 0, 60, 40, -60, 40 )
+uv = Vector2Array(  )
+color = Color( 0.217896, 0.996094, 0.704269, 1 )
+vertex_colors = ColorArray(  )
+offset = Vector2( 0, 0 )
+texture/texture = null
+texture/offset = Vector2( 0, 0 )
+texture/scale = Vector2( 1, 1 )
+texture/rotation = 0.0
+invert/enable = false
+invert/border = 100.0
 
 

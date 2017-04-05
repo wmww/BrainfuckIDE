@@ -26,10 +26,12 @@ func runNextOp():
 		
 		if c == "+":
 			dataManager.addVal(1)
-		
 		elif c == "-":
 			dataManager.addVal(-1)
-		
+		elif c == ">":
+			dataManager.movePtr(1)
+		elif c == "<":
+			dataManager.movePtr(-1)
 		else:
 			pass
 		

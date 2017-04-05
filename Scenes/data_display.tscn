@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=1]
+[gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://Scripts/data_display.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/Inconsolata-Reg-64.fnt" type="BitmapFont" id=2]
 
 [node name="data_display" type="Control"]
 
@@ -22,8 +23,10 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 71.0
 margin/top = 27.0
-margin/right = 347.0
-margin/bottom = 82.0
+margin/right = 435.0
+margin/bottom = 142.0
+custom_fonts/mono_font = ExtResource( 2 )
+custom_fonts/normal_font = ExtResource( 2 )
 bbcode/enabled = false
 bbcode/bbcode = "0 0 0 0 "
 visible_characters = -1

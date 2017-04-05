@@ -17,7 +17,7 @@ func movePtr(offset):
 	if i < 0:
 		throwError("you went too far left")
 		i=0
-	while data.size() < i:
+	while data.size() <= i:
 		data.push_back(0)
 	updateDisplay()
 	

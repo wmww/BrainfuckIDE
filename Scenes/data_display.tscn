@@ -10,10 +10,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 796.0
-margin/bottom = 200.0
+margin/left = 114.0
+margin/top = 115.0
+margin/right = 910.0
+margin/bottom = 473.0
 script/script = ExtResource( 1 )
 
 [node name="data_holder" type="Control" parent="."]
@@ -54,9 +54,8 @@ margin/bottom = 80.0
 
 [node name="marker_polygon" type="Polygon2D" parent="marker/polygon_control"]
 
-transform/pos = Vector2( 120, 0 )
 transform/scale = Vector2( 2, 2 )
-polygon = Vector2Array( -60, 0, -40, 0, -40, 20, 40, 20, 40, 0, 60, 0, 60, 40, -60, 40 )
+polygon = Vector2Array( -100, 0, -80, 0, -80, 20, 80, 20, 80, 0, 100, 0, 100, 40, -100, 40 )
 uv = Vector2Array(  )
 color = Color( 0.217896, 0.996094, 0.704269, 1 )
 vertex_colors = ColorArray(  )

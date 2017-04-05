@@ -3,13 +3,14 @@ extends Control
 var data
 var elems
 var i=0
-var elemWidth=200
+var elemWidth=400
 const ElemScene = preload("res://Scenes/data_elem.tscn")
 
 func _ready():
 	data=[0]
 	elems=[]
 	addElemDisplay()
+	moveMarker(0)
 	#set_process(true)
 
 func movePtr(offset):
@@ -25,11 +26,11 @@ func movePtr(offset):
 	while elems.size() <= i:
 		addElemDisplay()
 	
-	moveMarker()
+	moveMarker(0.3)
 
-func moveMarker():
-	var pos = Vector2(elemWidth*i, 0)
-	get_node("marker").moveTo(pos, 0)
+func moveMarker(time):
+	var pos = Vector2(elemWidth*(i+0.5), elemWidth)
+	get_node("marker").moveTo(pos, time)
 
 func addVal(amount):
 	data[i]+=amount

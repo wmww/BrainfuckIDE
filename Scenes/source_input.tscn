@@ -5,7 +5,7 @@
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends Node\n\nexport(NodePath) var controller\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\nfunc addCodeToController(code):\n\tif controller and get_node(controller):\n\t\tget_node(controller).addBFSource(code)\n\telse:\n\t\tprint(\"ERROR: please give the source input a controller\")\n\n\nfunc source_entered():\n\tvar textbox=get_node(\"tabs/Source Edit/textbox\")\n\taddCodeToController(textbox.get_text())\n\ttextbox.set_text(\"\")\n\nfunc quick_code_entered():\n\tvar lineEdit = get_node(\"tabs/Quick Code/edit_line/LineEdit\")\n\taddCodeToController(lineEdit.get_text())\n\tlineEdit.set_text(\"\")\n\nfunc _on_LineEdit_text_entered(text):\n\tquick_code_entered()\n"
+script/source = "extends Node\n\nexport(NodePath) var controller\n\nfunc _ready():\n\tget_node(\"tabs/Quick Code/edit_line/LineEdit\").grab_focus()\n\nfunc addCodeToController(code):\n\tif controller and get_node(controller):\n\t\tget_node(controller).addBFSource(code)\n\telse:\n\t\tprint(\"ERROR: please give the source input a controller\")\n\n\nfunc source_entered():\n\tvar textbox=get_node(\"tabs/Source Edit/textbox\")\n\taddCodeToController(textbox.get_text())\n\ttextbox.set_text(\"\")\n\nfunc quick_code_entered():\n\tvar lineEdit = get_node(\"tabs/Quick Code/edit_line/LineEdit\")\n\taddCodeToController(lineEdit.get_text())\n\tlineEdit.set_text(\"\")\n\nfunc _on_LineEdit_text_entered(text):\n\tquick_code_entered()\n"
 
 [node name="source_input" type="Control"]
 
@@ -47,9 +47,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 1020.0
+margin/left = 4.0
 margin/top = 51.0
-margin/right = -1012.0
+margin/right = 4.0
 margin/bottom = 4.0
 alignment = 0
 
@@ -118,6 +118,7 @@ flat = false
 
 [node name="Source Edit" type="HBoxContainer" parent="tabs"]
 
+visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false

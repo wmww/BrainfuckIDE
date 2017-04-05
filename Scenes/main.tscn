@@ -8,10 +8,12 @@
 
 [node name="data_display" parent="." instance=ExtResource( 1 )]
 
-margin/left = 118.0
-margin/top = 106.0
-margin/right = 918.0
-margin/bottom = 306.0
+anchor/right = 1
+anchor/bottom = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.5
 
 [node name="controller" type="Node" parent="."]
 

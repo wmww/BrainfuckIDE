@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://Scripts/data_display.gd" type="Script" id=1]
-[ext_resource path="res://Fonts/Inconsolata-Reg-64.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://Scripts/active_elem.gd" type="Script" id=2]
 [ext_resource path="res://Fonts/Ubuntu-Bold-256.fnt" type="BitmapFont" id=3]
 
 [node name="data_display" type="Control"]
@@ -15,7 +15,6 @@ margin/top = 0.0
 margin/right = 796.0
 margin/bottom = 200.0
 script/script = ExtResource( 1 )
-array_font = ExtResource( 2 )
 
 [node name="data_holder" type="Control" parent="."]
 
@@ -28,22 +27,35 @@ margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
 
-[node name="h_box" type="HBoxContainer" parent="data_holder"]
+[node name="marker" type="VBoxContainer" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 244.0
-margin/top = 142.0
-margin/right = 244.0
-margin/bottom = 142.0
+margin/left = 89.0
+margin/top = 178.0
+margin/right = 329.0
+margin/bottom = 483.0
 alignment = 0
+script/script = ExtResource( 2 )
 
-[node name="current_marker" type="Polygon2D" parent="data_holder"]
+[node name="polygon_control" type="Control" parent="marker"]
 
-transform/pos = Vector2( 369.947, 198.698 )
-transform/scale = Vector2( 0.5, 0.5 )
+rect/min_size = Vector2( 240, 80 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 0
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 240.0
+margin/bottom = 80.0
+
+[node name="marker_polygon" type="Polygon2D" parent="marker/polygon_control"]
+
+transform/pos = Vector2( 120, 0 )
+transform/scale = Vector2( 2, 2 )
 polygon = Vector2Array( -60, 0, -40, 0, -40, 20, 40, 20, 40, 0, 60, 0, 60, 40, -60, 40 )
 uv = Vector2Array(  )
 color = Color( 0.217896, 0.996094, 0.704269, 1 )
@@ -56,16 +68,16 @@ texture/rotation = 0.0
 invert/enable = false
 invert/border = 100.0
 
-[node name="Label" type="Label" parent="data_holder/current_marker"]
+[node name="marker_label" type="Label" parent="marker"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -130.0
-margin/top = -6.0
-margin/right = 147.0
-margin/bottom = 268.0
+margin/left = 0.0
+margin/top = 84.0
+margin/right = 240.0
+margin/bottom = 305.0
 custom_fonts/font = ExtResource( 3 )
 text = "+"
 align = 1

@@ -3,29 +3,32 @@ var startVal
 var endVal
 var totalTime
 var currentTime
+var isDone
 
 func _init(startIn):
 	startVal = startIn
 	endVal = startIn
 	currentTime = 0
-	totalTime = 1
+	totalTime = 0
+	isDone = false
 
 func start(val, time):
-	startVal=get()
-	endVal=val
-	totalTime=time
-	currentTime=0
+	startVal = get()
+	endVal = val
+	totalTime = time
+	currentTime = 0
+	isDone = false
 
 func advance(delta):
-	currentTime+=delta
-	if currentTime>totalTime:
-		currentTime=totalTime
+	currentTime += delta
+	if currentTime >= totalTime:
+		isDone = true
 
 func get():
-	if totalTime <= 0:
+	if isDone || totalTime <= 0:
 		return endVal
 	else:
 		return (endVal-startVal)*currentTime/totalTime+startVal
 
 func done():
-	return currentTime>=totalTime
+	return isDone

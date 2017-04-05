@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://Scenes/data_display.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/controller.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/source_input.tscn" type="PackedScene" id=3]
+
+[node name="root" type="Node"]
+
+[node name="data_display" parent="." instance=ExtResource( 1 )]
+
+margin/left = 118.0
+margin/top = 106.0
+margin/right = 918.0
+margin/bottom = 306.0
+
+[node name="controller" type="Node" parent="."]
+
+script/script = ExtResource( 2 )
+data_node = NodePath("../data_display")
+
+[node name="source_input" parent="." instance=ExtResource( 3 )]
+
+

@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends HBoxContainer\n\nexport(NodePath) var controller\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\nfunc addCodeToController():\n\tif controller and get_node(controller):\n\t\tvar textbox=get_node(\"textbox\")\n\t\tget_node(controller).addBFSource(textbox.get_text())\n\t\ttextbox.set_text(\"\")\n\telse:\n\t\tprint(\"ERROR: please give the source input a controller\")\n\n\nfunc _on_go_btn_pressed():\n\taddCodeToController()\n"
+
+[node name="source_input" type="HBoxContainer"]
+
+anchor/top = 2
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 20.0
+margin/top = 0.75
+margin/right = 20.0
+margin/bottom = 20.0
+alignment = 1
+script/script = SubResource( 1 )
+controller = NodePath("../controller")
+
+[node name="textbox" type="TextEdit" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 927.0
+margin/bottom = 130.0
+syntax_highlighting = false
+show_line_numbers = false
+highlight_all_occurrences = false
+caret/block_caret = false
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="go_btn" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 931.0
+margin/top = 0.0
+margin/right = 984.0
+margin/bottom = 130.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Run ->"
+flat = false
+
+[connection signal="pressed" from="go_btn" to="." method="_on_go_btn_pressed"]
+
+

@@ -1,12 +1,13 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://Fonts/Inconsolata-Reg-64.fnt" type="BitmapFont" id=1]
+[ext_resource path="res://Fonts/Droid-Reg-32.fnt" type="BitmapFont" id=1]
+[ext_resource path="res://Fonts/Inconsolata-Reg-64.fnt" type="BitmapFont" id=2]
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends HBoxContainer\n\nexport(NodePath) var controller\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\nfunc addCodeToController():\n\tif controller and get_node(controller):\n\t\tvar textbox=get_node(\"textbox\")\n\t\tget_node(controller).addBFSource(textbox.get_text())\n\t\ttextbox.set_text(\"\")\n\telse:\n\t\tprint(\"ERROR: please give the source input a controller\")\n\n\nfunc _on_go_btn_pressed():\n\taddCodeToController()\n"
+script/source = "extends Node\n\nexport(NodePath) var controller\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\nfunc addCodeToController(code):\n\tif controller and get_node(controller):\n\t\tget_node(controller).addBFSource(code)\n\telse:\n\t\tprint(\"ERROR: please give the source input a controller\")\n\n\nfunc source_entered():\n\tvar textbox=get_node(\"tabs/Source Edit/textbox\")\n\taddCodeToController(textbox.get_text())\n\ttextbox.set_text(\"\")\n\nfunc quick_code_entered():\n\tvar lineEdit = get_node(\"tabs/Quick Code/edit_line/LineEdit\")\n\taddCodeToController(lineEdit.get_text())\n\tlineEdit.set_text(\"\")\n\nfunc _on_LineEdit_text_entered(text):\n\tquick_code_entered()\n"
 
-[node name="source_input" type="HBoxContainer"]
+[node name="source_input" type="Control"]
 
 anchor/top = 2
 anchor/right = 1
@@ -15,15 +16,56 @@ focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 20.0
+margin/left = 0.0
 margin/top = 0.75
-margin/right = 20.0
-margin/bottom = 20.0
-alignment = 1
+margin/right = 0.0
+margin/bottom = 0.0
 script/script = SubResource( 1 )
 controller = NodePath("../controller")
 
-[node name="textbox" type="TextEdit" parent="."]
+[node name="tabs" type="TabContainer" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+custom_fonts/font = ExtResource( 1 )
+tab_align = 1
+tabs_visible = true
+
+[node name="Quick Code" type="VBoxContainer" parent="tabs"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1020.0
+margin/top = 51.0
+margin/right = -1012.0
+margin/bottom = 4.0
+alignment = 0
+
+[node name="edit_line" type="HBoxContainer" parent="tabs/Quick Code"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1016.0
+margin/bottom = 60.0
+alignment = 0
+
+[node name="LineEdit" type="LineEdit" parent="tabs/Quick Code/edit_line"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
@@ -31,26 +73,25 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 872.0
-margin/bottom = 130.0
-custom_fonts/font = ExtResource( 1 )
-syntax_highlighting = false
-show_line_numbers = false
-highlight_all_occurrences = false
-caret/block_caret = false
+margin/right = 904.0
+margin/bottom = 64.0
+custom_fonts/font = ExtResource( 2 )
+placeholder/text = "ender BF code"
+placeholder/alpha = 0.4
+focus_mode = 2
 caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
-[node name="go_btn" type="Button" parent="."]
+[node name="Button" type="Button" parent="tabs/Quick Code/edit_line"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 876.0
-margin/top = 35.0
-margin/right = 984.0
-margin/bottom = 95.0
+size_flags/vertical = 2
+margin/left = 908.0
+margin/top = 0.0
+margin/right = 1016.0
+margin/bottom = 60.0
 custom_fonts/font = ExtResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -58,6 +99,76 @@ shortcut = null
 text = "Run"
 flat = false
 
-[connection signal="pressed" from="go_btn" to="." method="_on_go_btn_pressed"]
+[node name="Button" type="Button" parent="tabs/Quick Code"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 64.0
+margin/right = 1016.0
+margin/bottom = 124.0
+custom_fonts/font = ExtResource( 2 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "[To be implemented]"
+flat = false
+
+[node name="Source Edit" type="HBoxContainer" parent="tabs"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 4.0
+margin/top = 51.0
+margin/right = 4.0
+margin/bottom = 4.0
+alignment = 0
+
+[node name="textbox" type="TextEdit" parent="tabs/Source Edit"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 904.0
+margin/bottom = 95.0
+custom_fonts/font = ExtResource( 2 )
+syntax_highlighting = false
+show_line_numbers = true
+highlight_all_occurrences = false
+caret/block_caret = true
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="go_btn" type="Button" parent="tabs/Source Edit"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 908.0
+margin/top = 17.0
+margin/right = 1016.0
+margin/bottom = 77.0
+custom_fonts/font = ExtResource( 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Run"
+flat = false
+
+[connection signal="text_entered" from="tabs/Quick Code/edit_line/LineEdit" to="." method="_on_LineEdit_text_entered"]
+
+[connection signal="pressed" from="tabs/Quick Code/edit_line/Button" to="." method="quick_code_entered"]
+
+[connection signal="pressed" from="tabs/Source Edit/go_btn" to="." method="source_entered"]
 
 

@@ -25,4 +25,5 @@ func blink(text, time):
 	labelAnim.start(2, time)
 
 func moveTo(newPos, time):
+	print("moveTo called with " + str(newPos))
 	posAnim.start(newPos, time)

@@ -126,7 +126,14 @@ func findCloseBrace(start):
 
 func calcTime():
 	
-	return (0.3*5) / (streak+5)
+	if streak<3:
+		return 0.35
+	elif streak<12:
+		return 0.2
+	else:
+		return 0.05
+	
+	#return (0.3*5) / (streak+5)
 	
 	#return max(0.4 - streak/20.0, 0)
 	

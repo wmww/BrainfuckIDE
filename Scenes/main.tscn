@@ -23,4 +23,7 @@ data_node = NodePath("../data_display")
 
 [node name="source_input" parent="." instance=ExtResource( 3 )]
 
+anchor/top = 1
+margin/top = 354.0
+
 

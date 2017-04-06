@@ -6,6 +6,7 @@ var source = ""
 var execIndex = 0
 var stack = []
 var dataManager
+var delay = 0
 
 func _ready():
 	dataManager = get_node(data_node)
@@ -16,7 +17,9 @@ func addBFSource(sourceIn):
 	source += sourceIn
 
 func _process(delta):
-	while execIndex < source.length():
+	delay -= delta
+	if delay<0:
+		delay = 0
 		runNextOp()
 
 func runNextOp():
@@ -56,6 +59,7 @@ func runNextOp():
 		
 		if !isComment:
 			dataManager.blinkOp(c)
+			delay += 0.4
 		
 		execIndex += 1
 

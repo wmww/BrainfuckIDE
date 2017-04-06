@@ -13,7 +13,7 @@ func _ready():
 	moveMarker(0)
 	#set_process(true)
 
-func movePtr(offset):
+func movePtr(offset, time):
 	i+=offset
 	
 	if i < 0:
@@ -26,21 +26,21 @@ func movePtr(offset):
 	while elems.size() <= i:
 		addElemDisplay()
 	
-	moveMarker(0.4)
+	moveMarker(time)
 
 func moveMarker(time):
 	var pos = Vector2(elemSize.x*(i+0.5), elemSize.y)
 	get_node("marker").moveTo(pos, time)
 
-func addVal(amount):
+func addVal(amount, time):
 	data[i]+=amount
-	elems[i].changeVal(data[i], 0.4)
+	elems[i].changeVal(data[i], time)
 	
 func getVal():
 	return data[i]
 
-func blinkOp(opText):
-	get_node("marker").blink(opText, 0.4)
+func blinkOp(opText, time):
+	get_node("marker").blink(opText, time)
 
 func addElemDisplay():
 	var elem = ElemScene.instance()

@@ -33,12 +33,22 @@ func moveMarker(time):
 	get_node("marker").moveTo(pos, time)
 
 func addVal(amount, time):
-	data[i]+=amount
+	data[i] += amount
 	elems[i].changeVal(data[i], time)
 	
 func getVal():
 	return data[i]
-
+	
+func setVal(newVal, time):
+	data[i] = newVal
+	elems[i].changeVal(data[i], time)
+	
+func getValAscii():
+	return RawArray([data[i]]).get_string_from_ascii()
+	
+func setValAscii(newVal, time):
+	setVal(newVal.to_ascii()[0], time)
+	
 func blinkOp(opText, time):
 	get_node("marker").blink(opText, time)
 

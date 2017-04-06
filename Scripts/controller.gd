@@ -14,6 +14,9 @@ var source = ""
 var instr = []
 var instrToStr = {1: '-', 2: '+', 3: '<', 4: '>', 5: '.', 6: ',', 7: '[', 8: ']'}
 
+# some settings to control appearence
+var combineStreak = true
+
 # the index in the source code that we are to run next
 # or the length of the source code array if we are done
 var instrIndex = 0
@@ -25,8 +28,8 @@ var stack = []
 var delay = 0
 
 # used to speed things up as 
-var lastOp = 0
-var streak = 0
+#var lastOp = 0
+#var streak = 0
 var baseOpTime = 0.4
 
 func _ready():
@@ -35,7 +38,6 @@ func _ready():
 	set_process(true)
 
 func addBFSource(sourceIn):
-	print("got source: " + sourceIn)
 	source += sourceIn
 	for i in sourceIn:
 		if i == "-":
@@ -66,31 +68,46 @@ func runNextOp():
 			delay = 0
 			return
 		
-		var c = instr[instrIndex]
+		var instrI = instrIndex
 		
-		if c == lastOp:
-			streak += 1
-		else:
-			lastOp = c
-			streak = 0
+		var c = instr[instrI]
+		
+		#if c == lastOp:
+		#	streak += 1
+		#else:
+		#	lastOp = c
+		#	streak = 0
+		
+		var iters = 1
+		
+		if combineStreak && c >= 1 && c <= 4:
+			while instr.size() > instrI+1 && instr[instrI+1] == c:
+				instrI += 1
+				iters += 1
 		
 		var time = calcTime()
 		
 		if c == 1:
-			dataManager.addVal(-1, time)
+			dataManager.addVal(-iters, time)
 		elif c == 2:
-			dataManager.addVal(1, time)
+			dataManager.addVal(iters, time)
 		elif c == 3:
-			dataManager.movePtr(-1, time)
+			dataManager.movePtr(-iters, time)
 		elif c == 4:
-			dataManager.movePtr(1, time)
+			dataManager.movePtr(iters, time)
 		elif c == 5:
-			terminal.addOutput(RawArray([dataManager.getVal()]).get_string_from_ascii())
+			terminal.addOutput(dataManager.getValAscii())
+		elif c == 6:
+			var a = terminal.popInput()
+			if a:
+				dataManager.setValAscii(a, time)
+			else:
+				throwError("please enter input")
 		elif c == 7:
 			if dataManager.getVal() == 0:
-				instrIndex = findCloseBrace(instrIndex)-1
+				instrI = findCloseBrace(instrI)-1
 			else:
-				stack.append(instrIndex)
+				stack.append(instrI)
 		elif c == 8:
 			if stack.size() == 0:
 				throwError("']' without '['")
@@ -98,14 +115,15 @@ func runNextOp():
 				if dataManager.getVal() == 0:
 					stack.pop_back()
 				else:
-					instrIndex = stack.back()
+					instrI = stack.back()
 		else:
 			throwError("unrecognised command " + str(c))
 		
 		dataManager.blinkOp(instrToStr[c], time)
+		
 		delay += time
 		
-		instrIndex += 1
+		instrIndex = instrI + 1
 
 func findCloseBrace(start):
 	if source[start] != "[":
@@ -131,12 +149,14 @@ func findCloseBrace(start):
 
 func calcTime():
 	
-	if streak<3:
-		return 0.35
-	elif streak<12:
-		return 0.2
-	else:
-		return 0.05
+	return baseOpTime
+	
+	#if streak<3:
+	#	return 0.35
+	#elif streak<12:
+	#	return 0.2
+	#else:
+	#	return 0.05
 	
 	#return (0.3*5) / (streak+5)
 	

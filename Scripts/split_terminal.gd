@@ -20,9 +20,9 @@ func _on_LineEdit_text_entered(text):
 	get_node("VBoxContainer/LineEdit").set_text("")
 	updateLabel()
 
-func popInputChar():
+func popInput():
 	if input.empty():
-		return ""
+		return null
 	else:
 		var out = input[0]
 		input = input.substr(1, input.length()-1)

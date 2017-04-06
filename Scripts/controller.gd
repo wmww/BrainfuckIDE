@@ -1,9 +1,11 @@
 extends Node
 
 export(NodePath) var data_node
+export(NodePath) var terminal_node
 
 # the node that manages and displays the array, set in _ready from data_node
 var dataManager
+var terminal
 
 # the source code that we are running
 var source = ""
@@ -29,6 +31,7 @@ var baseOpTime = 0.4
 
 func _ready():
 	dataManager = get_node(data_node)
+	terminal = get_node(terminal_node)
 	set_process(true)
 
 func addBFSource(sourceIn):
@@ -81,6 +84,8 @@ func runNextOp():
 			dataManager.movePtr(-1, time)
 		elif c == 4:
 			dataManager.movePtr(1, time)
+		elif c == 5:
+			terminal.addOutput(RawArray([dataManager.getVal()]).get_string_from_ascii())
 		elif c == 7:
 			if dataManager.getVal() == 0:
 				instrIndex = findCloseBrace(instrIndex)-1

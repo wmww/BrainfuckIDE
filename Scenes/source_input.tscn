@@ -55,13 +55,12 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 4.0
 margin/top = 51.0
-margin/right = 348.0
-margin/bottom = 12.0
+margin/right = 4.0
+margin/bottom = 4.0
 alignment = 0
 
 [node name="edit_line" type="HBoxContainer" parent="tabs/Quick Code"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -83,7 +82,7 @@ margin/top = 0.0
 margin/right = 1572.0
 margin/bottom = 64.0
 custom_fonts/font = ExtResource( 2 )
-placeholder/text = "Enter Brainfuck code"
+placeholder/text = "Brainfuck code"
 placeholder/alpha = 0.4
 focus_mode = 2
 caret/caret_blink = false
@@ -410,8 +409,8 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 4.0
 margin/top = 51.0
-margin/right = 391.0
-margin/bottom = 45.0
+margin/right = 4.0
+margin/bottom = 4.0
 scroll/horizontal = false
 scroll/vertical = true
 script/script = ExtResource( 4 )
@@ -425,7 +424,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 1258.0
+margin/right = 1645.0
 margin/bottom = 0.0
 alignment = 0
 
@@ -449,9 +448,9 @@ alignment = 0
 
 [connection signal="pressed" from="tabs/Quick Code/HBoxContainer/close_btn" to="." method="_on_close_btn_pressed"]
 
-[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="." method="_on_add_textbox_text_entered"]
-
 [connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" method="_on_text_entered"]
+
+[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="." method="_on_add_textbox_text_entered"]
 
 [connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="." method="_on_move_textbox_text_entered"]
 

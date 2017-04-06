@@ -27,3 +27,8 @@ func popInput():
 		var out = input[0]
 		input = input.substr(1, input.length()-1)
 		return out
+
+func reset():
+	history = ""
+	input = ""
+	updateLabel()

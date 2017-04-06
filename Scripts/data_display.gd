@@ -59,5 +59,16 @@ func addElemDisplay():
 	elem.set_size(elemSize)
 	elems.push_back(elem)
 
+func reset(time):
+	for i in range(0, data.size()):
+		data[i] = 0
+	
+	for i in elems:
+		i.changeVal(0, time)
+	
+	i=0
+	
+	moveMarker(time)
+
 func throwError(msg):
 	print("ERROR: " + msg)

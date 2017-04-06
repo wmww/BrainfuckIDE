@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://Scenes/data_display.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/controller.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/source_input.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scripts/split_terminal.gd" type="Script" id=4]
-[ext_resource path="res://Fonts/Inconsolata-Reg-64.fnt" type="BitmapFont" id=5]
+[ext_resource path="res://Scenes/terminal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/options.gd" type="Script" id=5]
+[ext_resource path="res://Fonts/Droid-Reg-32.fnt" type="BitmapFont" id=6]
 
 [node name="root" type="Node"]
 
@@ -29,109 +30,69 @@ terminal_node = NodePath("../terminal")
 anchor/top = 1
 margin/top = 354.0
 
-[node name="terminal" type="Control" parent="."]
+[node name="terminal" parent="." instance=ExtResource( 4 )]
 
+editor/display_folded = false
+
+[node name="options" type="Control" parent="."]
+
+anchor/left = 1
 anchor/top = 1
+anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 467.0
+margin/left = 663.0
 margin/top = 895.0
-margin/right = 1486.0
-margin/bottom = 423.0
-script/script = ExtResource( 4 )
+margin/right = 87.0
+margin/bottom = 384.0
+script/script = ExtResource( 5 )
+controller_node = NodePath("../controller")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="terminal"]
+[node name="PanelContainer" type="PanelContainer" parent="options"]
 
 anchor/right = 1
 anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="options/PanelContainer"]
+
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 569.0
+margin/bottom = 504.0
 alignment = 0
 
-[node name="Control" type="Control" parent="terminal/VBoxContainer"]
+[node name="reset_btn" type="Button" parent="options/PanelContainer/VBoxContainer"]
 
 focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1019.0
-margin/bottom = 404.0
-
-[node name="MarginContainer" type="MarginContainer" parent="terminal/VBoxContainer/Control"]
-
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-custom_constants/margin_right = 20
-custom_constants/margin_top = 20
-custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
-
-[node name="label" type="RichTextLabel" parent="terminal/VBoxContainer/Control/MarginContainer"]
-
-visibility/behind_parent = true
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 20.0
-margin/top = 20.0
-margin/right = 999.0
-margin/bottom = 384.0
-custom_fonts/normal_font = ExtResource( 5 )
-bbcode/enabled = false
-bbcode/bbcode = "IO will go here"
-visible_characters = -1
-
-[node name="Panel" type="Panel" parent="terminal/VBoxContainer/Control"]
-
-visibility/behind_parent = true
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+margin/right = 562.0
+margin/bottom = 39.0
+custom_fonts/font = ExtResource( 6 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Reset Everything"
+flat = false
 
-[node name="LineEdit" type="LineEdit" parent="terminal/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 408.0
-margin/right = 1019.0
-margin/bottom = 472.0
-custom_fonts/font = ExtResource( 5 )
-placeholder/text = "program input"
-placeholder/alpha = 0.4
-focus_mode = 2
-caret/caret_blink = false
-caret/caret_blink_speed = 0.65
-
-[connection signal="text_entered" from="terminal/VBoxContainer/LineEdit" to="terminal" method="_on_LineEdit_text_entered"]
+[connection signal="pressed" from="options/PanelContainer/VBoxContainer/reset_btn" to="options" method="_on_reset_btn_pressed"]
 
 

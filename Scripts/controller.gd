@@ -8,10 +8,10 @@ var dataManager
 var terminal
 
 # the source code that we are running
-var source = ""
+var source
 
 # instr is an int: 1- 2+ 3< 4> 5. 6, 7[ 8]
-var instr = []
+var instr
 var instrToStr = {1: '-', 2: '+', 3: '<', 4: '>', 5: '.', 6: ',', 7: '[', 8: ']'}
 
 # some settings to control appearence
@@ -19,13 +19,13 @@ var combineStreak = true
 
 # the index in the source code that we are to run next
 # or the length of the source code array if we are done
-var instrIndex = 0
+var instrIndex
 
 # a list of the location of all open brackets that form the stack
-var stack = []
+var stack
 
 # how much longer we are waiting before we can do something new
-var delay = 0
+var delay
 
 # used to speed things up as 
 #var lastOp = 0
@@ -33,6 +33,7 @@ var delay = 0
 var baseOpTime = 0.4
 
 func _ready():
+	reset()
 	dataManager = get_node(data_node)
 	terminal = get_node(terminal_node)
 	set_process(true)
@@ -166,6 +167,17 @@ func calcTime():
 	#	return 0.2
 	#else:
 	#	return 0
+
+func reset():
+	source = ""
+	instr = []
+	instrIndex = 0
+	stack = []
+	delay = 0
+	if dataManager:
+		dataManager.reset(1)
+	if terminal:
+		terminal.reset()
 
 func throwError(msg):
 	print("ERROR: " + msg)

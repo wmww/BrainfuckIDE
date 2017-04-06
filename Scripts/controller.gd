@@ -125,7 +125,7 @@ func findCloseBrace(start):
 	return i
 
 func calcTime():
-	return 0.3
+	return 0.2
 	#time -= tmpStreak/10.0
 		#if time < 0:
 		#	time = 0

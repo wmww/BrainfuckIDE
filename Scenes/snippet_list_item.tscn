@@ -1,0 +1,110 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://Fonts/Droid-Reg-32.fnt" type="BitmapFont" id=1]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Control\n\nvar code\nvar name\n\nvar codeRunner\n\nfunc _ready():\n\tpass\n\nfunc setData(nameIn, codeIn, codeRunnerIn):\n\tname = nameIn\n\tcode = codeIn\n\tcodeRunner = codeRunnerIn\n\tget_node(\"container/name\").set_text(name)\n\tget_node(\"container/code\").set_text(code)\n\nfunc _on_copy_pressed():\n\tOS.set_clipboard(code)\n\nfunc _on_run_pressed():\n\tif codeRunner == null:\n\t\tprint(\"error: cannot run bf code because codeRunner is null\")\n\t\treturn\n\t\n\tcodeRunner.runCode(code)\n"
+
+[node name="snippet_list_item" type="Control"]
+
+rect/min_size = Vector2( 0, 60 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 869.0
+margin/bottom = 20.0
+script/script = SubResource( 1 )
+
+[node name="container" type="HBoxContainer" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 157.0
+alignment = 0
+
+[node name="name" type="Label" parent="container"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 204.0
+margin/bottom = 43.0
+custom_fonts/font = ExtResource( 1 )
+text = "Snippet Name"
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="code" type="LineEdit" parent="container"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+size_flags/stretch_ratio = 8.0
+margin/left = 208.0
+margin/top = 0.0
+margin/right = 708.0
+margin/bottom = 43.0
+custom_fonts/font = ExtResource( 1 )
+text = "Brainfuck code here"
+placeholder/alpha = 0.6
+editable = false
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="copy" type="Button" parent="container"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 712.0
+margin/top = 0.0
+margin/right = 796.0
+margin/bottom = 43.0
+custom_fonts/font = ExtResource( 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Copy"
+flat = false
+
+[node name="run" type="Button" parent="container"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 800.0
+margin/top = 0.0
+margin/right = 869.0
+margin/bottom = 43.0
+custom_fonts/font = ExtResource( 1 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Run"
+flat = false
+
+[connection signal="pressed" from="container/copy" to="." method="_on_copy_pressed"]
+
+[connection signal="pressed" from="container/run" to="." method="_on_run_pressed"]
+
+

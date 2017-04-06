@@ -54,7 +54,7 @@ func addBFSource(sourceIn):
 
 func _process(delta):
 	delay -= delta
-	if delay < 0:
+	while delay < 0:
 		runNextOp()
 
 func runNextOp():
@@ -125,10 +125,15 @@ func findCloseBrace(start):
 	return i
 
 func calcTime():
-	return 0.2
-	#time -= tmpStreak/10.0
-		#if time < 0:
-		#	time = 0
+	
+	return (0.3*5) / (streak+5)
+	
+	#return max(0.4 - streak/20.0, 0)
+	
+	#if streak<3:
+	#	return 0.2
+	#else:
+	#	return 0
 
 func throwError(msg):
 	print("ERROR: " + msg)

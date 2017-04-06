@@ -18,7 +18,7 @@ func _process(delta):
 		if labelAnim.done():
 			l1.hide()
 			l0.set_text(str(round(val)))
-			l0.set_scale(Vector2(1, 1))
+			#l0.set_scale(Vector2(1, 1))
 			l0.set_pos(Vector2(0, 0) + labelOffset)
 			l0.set_opacity(1)
 			set_process(false)

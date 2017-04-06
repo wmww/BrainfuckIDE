@@ -16,7 +16,8 @@ func addBFSource(sourceIn):
 	source += sourceIn
 
 func _process(delta):
-	runNextOp()
+	while execIndex < source.length():
+		runNextOp()
 
 func runNextOp():
 	

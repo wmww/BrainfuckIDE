@@ -56,4 +56,16 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="Panel" type="Panel" parent="."]
+
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = -8.0
+margin/top = 30.0
+margin/right = 8.0
+margin/bottom = 45.0
+
 

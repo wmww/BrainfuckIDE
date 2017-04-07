@@ -15,47 +15,6 @@ margin/right = 400.0
 margin/bottom = 400.0
 script/script = ExtResource( 1 )
 
-[node name="label0" type="Label" parent="."]
-
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = -200.0
-margin/top = -200.0
-margin/right = -200.0
-margin/bottom = -200.0
-custom_fonts/font = ExtResource( 2 )
-text = "0"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="label1" type="Label" parent="."]
-
-visibility/visible = false
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = -200.0
-margin/top = -200.0
-margin/right = -200.0
-margin/bottom = -200.0
-custom_fonts/font = ExtResource( 2 )
-text = "0"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
 [node name="Panel" type="Panel" parent="."]
 
 anchor/bottom = 1
@@ -67,5 +26,63 @@ margin/left = -8.0
 margin/top = 30.0
 margin/right = 8.0
 margin/bottom = 45.0
+
+[node name="ctrl0" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 200.0
+margin/top = 200.0
+margin/right = 240.0
+margin/bottom = 240.0
+
+[node name="label" type="Label" parent="ctrl0"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -400.0
+margin/top = -200.0
+margin/right = 400.0
+margin/bottom = 200.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ctrl1" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 200.0
+margin/top = 200.0
+margin/right = 240.0
+margin/bottom = 240.0
+
+[node name="label" type="Label" parent="ctrl1"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -400.0
+margin/top = -200.0
+margin/right = 400.0
+margin/bottom = 200.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 

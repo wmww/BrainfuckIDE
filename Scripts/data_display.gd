@@ -3,13 +3,17 @@ extends Control
 var data
 var elems
 var i=0
-var elemSize=Vector2(500, 200)
+var elemSize=Vector2(400, 200)
 const ElemScene = preload("res://Scenes/data_elem.tscn")
 
 func _ready():
-	data=[0]
+	data=[]
 	elems=[]
-	addElemDisplay()
+	
+	for i in range(0, 24):
+		data.append(0)
+		addElemDisplay()
+	
 	moveMarker(0)
 	#set_process(true)
 

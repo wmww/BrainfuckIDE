@@ -16,7 +16,7 @@ var instrToStr = {1: '-', 2: '+', 3: '<', 4: '>', 5: '.', 6: ',', 7: '[', 8: ']'
 
 # some settings to control appearence
 var skipToEnd = false
-var combineStreak = false
+var combineStreak = true
 var combineLoop = false
 
 # the index in the source code that we are to run next

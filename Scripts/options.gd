@@ -5,6 +5,8 @@ var controller
 
 func _ready():
 	controller = get_node(controller_node)
+	get_node("PanelContainer/VBoxContainer/combine_streaks_btn").set_pressed(controller.combineStreak)
+	get_node("PanelContainer/VBoxContainer/combine_loops_btn").set_pressed(controller.combineLoop)
 
 func _on_reset_btn_pressed():
 	controller.reset()

@@ -7,6 +7,7 @@ func _ready():
 	controller = get_node(controller_node)
 	get_node("PanelContainer/VBoxContainer/combine_streaks_btn").set_pressed(controller.combineStreak)
 	get_node("PanelContainer/VBoxContainer/combine_loops_btn").set_pressed(controller.combineLoop)
+	get_node("PanelContainer/VBoxContainer/faster_in_loop_btn").set_pressed(controller.fasterInLoop)
 
 func _on_reset_btn_pressed():
 	controller.reset()
@@ -16,6 +17,9 @@ func _on_combine_streaks_btn_toggled( pressed ):
 
 func _on_combine_loops_btn_toggled( pressed ):
 	controller.combineLoop = pressed
+
+func _on_faster_in_loop_btn_toggled( pressed ):
+	controller.fasterInLoop = pressed
 
 func speed_btn_pressed(btn):
 	get_node("PanelContainer/VBoxContainer/HBoxContainer/speed_btn_1").set_pressed(btn == 1)
@@ -46,3 +50,5 @@ func _on_speed_btn_4_toggled( pressed ):
 
 func _on_Button_pressed():
 	controller.skipToEnd = true
+	speed_btn_pressed(2)
+	

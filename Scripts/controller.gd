@@ -18,6 +18,7 @@ var instrToStr = {1: '-', 2: '+', 3: '<', 4: '>', 5: '.', 6: ',', 7: '[', 8: ']'
 var skipToEnd = false
 var combineStreak = true
 var combineLoop = false
+var fasterInLoop = true
 
 # the index in the source code that we are to run next
 # or the length of the source code array if we are done
@@ -83,7 +84,10 @@ func _process(delta):
 			dataManager.blinkOp("[...]", time)
 			delay = time
 		else:
-			time = baseOpTime
+			if fasterInLoop:
+				time = baseOpTime / (stack.size() + 1)
+			else:
+				time = baseOpTime
 			while delay < 0:
 				runNextOp()
 		
@@ -161,7 +165,7 @@ func findCloseBrace(start):
 	var i = start + 1
 	
 	while count > 0:
-		if i > source.length():
+		if i >= source.length():
 			print("could not find matching '['")
 			return source.length()
 		

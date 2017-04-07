@@ -99,6 +99,24 @@ text = "Combine Loops"
 flat = false
 align = 0
 
+[node name="faster_in_loop_btn" type="CheckButton" parent="PanelContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 148.0
+margin/right = 915.0
+margin/bottom = 189.0
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Faster in Loops"
+flat = false
+align = 0
+
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 
 focus/ignore_mouse = false
@@ -106,9 +124,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 148.0
+margin/top = 193.0
 margin/right = 915.0
-margin/bottom = 187.0
+margin/bottom = 232.0
 alignment = 0
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
@@ -204,9 +222,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 191.0
+margin/top = 236.0
 margin/right = 915.0
-margin/bottom = 230.0
+margin/bottom = 275.0
 alignment = 2
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer1"]
@@ -233,7 +251,7 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 234.0
+margin/top = 279.0
 margin/right = 915.0
 margin/bottom = 478.0
 
@@ -257,6 +275,8 @@ flat = false
 [connection signal="toggled" from="PanelContainer/VBoxContainer/combine_streaks_btn" to="." method="_on_combine_streaks_btn_toggled"]
 
 [connection signal="toggled" from="PanelContainer/VBoxContainer/combine_loops_btn" to="." method="_on_combine_loops_btn_toggled"]
+
+[connection signal="toggled" from="PanelContainer/VBoxContainer/faster_in_loop_btn" to="." method="_on_faster_in_loop_btn_toggled"]
 
 [connection signal="toggled" from="PanelContainer/VBoxContainer/HBoxContainer/speed_btn_1" to="." method="_on_speed_btn_1_toggled"]
 

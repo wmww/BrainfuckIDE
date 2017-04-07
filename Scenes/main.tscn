@@ -128,26 +128,86 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="HSlider" type="HSlider" parent="options/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="options/PanelContainer/VBoxContainer"]
 
 focus/ignore_mouse = false
-focus/stop_mouse = true
+focus/stop_mouse = false
 size_flags/horizontal = 2
-size_flags/vertical = 0
+size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 127.0
 margin/right = 562.0
-margin/bottom = 143.0
-range/min = 0.0
-range/max = 1.0
-range/step = 0.01
-range/page = 0.0
-range/value = 0.5
-range/exp_edit = false
-range/rounded = false
-tick_count = 0
-ticks_on_borders = false
-focus_mode = 2
+margin/bottom = 166.0
+alignment = 0
+
+[node name="speed_btn_1" type="Button" parent="options/PanelContainer/VBoxContainer/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 137.0
+margin/bottom = 39.0
+custom_fonts/font = ExtResource( 6 )
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "0.5X"
+flat = true
+
+[node name="speed_btn_2" type="Button" parent="options/PanelContainer/VBoxContainer/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 141.0
+margin/top = 0.0
+margin/right = 278.0
+margin/bottom = 39.0
+custom_fonts/font = ExtResource( 6 )
+toggle_mode = true
+is_pressed = true
+enabled_focus_mode = 2
+shortcut = null
+text = "1X"
+flat = true
+
+[node name="speed_btn_3" type="Button" parent="options/PanelContainer/VBoxContainer/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 282.0
+margin/top = 0.0
+margin/right = 419.0
+margin/bottom = 39.0
+custom_fonts/font = ExtResource( 6 )
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "4X"
+flat = true
+
+[node name="speed_btn_4" type="Button" parent="options/PanelContainer/VBoxContainer/HBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 423.0
+margin/top = 0.0
+margin/right = 562.0
+margin/bottom = 39.0
+custom_fonts/font = ExtResource( 6 )
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "20X"
+flat = true
 
 [node name="reset_btn" type="Button" parent="options/PanelContainer/VBoxContainer"]
 
@@ -156,9 +216,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 147.0
+margin/top = 170.0
 margin/right = 562.0
-margin/bottom = 186.0
+margin/bottom = 209.0
 custom_fonts/font = ExtResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -170,7 +230,13 @@ flat = false
 
 [connection signal="toggled" from="options/PanelContainer/VBoxContainer/combine_loops_btn" to="options" method="_on_combine_loops_btn_toggled"]
 
-[connection signal="value_changed" from="options/PanelContainer/VBoxContainer/HSlider" to="options" method="_on_HSlider_value_changed"]
+[connection signal="toggled" from="options/PanelContainer/VBoxContainer/HBoxContainer/speed_btn_1" to="options" method="_on_speed_btn_1_toggled"]
+
+[connection signal="toggled" from="options/PanelContainer/VBoxContainer/HBoxContainer/speed_btn_2" to="options" method="_on_speed_btn_2_toggled"]
+
+[connection signal="toggled" from="options/PanelContainer/VBoxContainer/HBoxContainer/speed_btn_3" to="options" method="_on_speed_btn_3_toggled"]
+
+[connection signal="toggled" from="options/PanelContainer/VBoxContainer/HBoxContainer/speed_btn_4" to="options" method="_on_speed_btn_4_toggled"]
 
 [connection signal="pressed" from="options/PanelContainer/VBoxContainer/reset_btn" to="options" method="_on_reset_btn_pressed"]
 

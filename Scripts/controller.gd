@@ -130,10 +130,12 @@ func runNextOp():
 			terminal.addOutput(dataManager.getValAscii())
 		elif c == 6:
 			var a = terminal.popInput()
-			if a:
-				dataManager.setValAscii(a, time)
-			else:
+			if !a:
 				throwError("please enter input")
+				a = '\n'
+				
+			dataManager.setValAscii(a, time)
+				
 		elif c == 7:
 			if dataManager.getVal() == 0:
 				instrI = findCloseBrace(instrI)-1

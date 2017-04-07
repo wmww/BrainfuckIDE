@@ -447,9 +447,9 @@ alignment = 0
 
 [connection signal="pressed" from="tabs/Quick Code/HBoxContainer/close_btn" to="." method="_on_close_btn_pressed"]
 
-[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" method="_on_text_entered"]
-
 [connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="." method="_on_add_textbox_text_entered"]
+
+[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" method="_on_text_entered"]
 
 [connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="." method="_on_move_textbox_text_entered"]
 

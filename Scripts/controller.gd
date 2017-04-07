@@ -157,21 +157,21 @@ func runNextOp():
 		instrIndex = instrI + 1
 
 func findCloseBrace(start):
-	if source[start] != "[":
+	if instr[start] != 7:
 		throwError("findCloseBrace called without the starting point being '['")
-		return
+		return start
 	
 	var count = 1
 	var i = start + 1
 	
 	while count > 0:
-		if i >= source.length():
+		if i >= instr.size():
 			print("could not find matching '['")
-			return source.length()
+			return instr.size()
 		
-		if source[i] == "[":
+		if instr[i] == 7:
 			count += 1
-		elif source[i] == "]":
+		elif instr[i] == 8:
 			count -= 1
 		
 		i += 1

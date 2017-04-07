@@ -44,8 +44,8 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 663.0
-margin/top = 895.0
+margin/left = 1016.0
+margin/top = 919.0
 margin/right = 87.0
 margin/bottom = 384.0
 script/script = ExtResource( 5 )
@@ -72,8 +72,8 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 7.0
 margin/top = 7.0
-margin/right = 569.0
-margin/bottom = 504.0
+margin/right = 922.0
+margin/bottom = 528.0
 alignment = 0
 
 [node name="combine_streaks_btn" type="CheckButton" parent="options/PanelContainer/VBoxContainer"]
@@ -84,7 +84,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 562.0
+margin/right = 915.0
 margin/bottom = 41.0
 custom_fonts/font = ExtResource( 6 )
 toggle_mode = true
@@ -102,7 +102,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 45.0
-margin/right = 562.0
+margin/right = 915.0
 margin/bottom = 86.0
 custom_fonts/font = ExtResource( 6 )
 toggle_mode = true
@@ -112,22 +112,6 @@ text = "Combine Loops"
 flat = false
 align = 0
 
-[node name="Label" type="Label" parent="options/PanelContainer/VBoxContainer"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 90.0
-margin/right = 562.0
-margin/bottom = 123.0
-custom_fonts/font = ExtResource( 6 )
-text = "Speed"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
 [node name="HBoxContainer" type="HBoxContainer" parent="options/PanelContainer/VBoxContainer"]
 
 focus/ignore_mouse = false
@@ -135,10 +119,27 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 127.0
-margin/right = 562.0
-margin/bottom = 166.0
+margin/top = 90.0
+margin/right = 915.0
+margin/bottom = 129.0
 alignment = 0
+
+[node name="Label" type="Label" parent="options/PanelContainer/VBoxContainer/HBoxContainer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+size_flags/stretch_ratio = 2.0
+margin/left = 0.0
+margin/top = 3.0
+margin/right = 299.0
+margin/bottom = 36.0
+custom_fonts/font = ExtResource( 6 )
+text = "Speed"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="speed_btn_1" type="Button" parent="options/PanelContainer/VBoxContainer/HBoxContainer"]
 
@@ -146,9 +147,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 2
-margin/left = 0.0
+margin/left = 303.0
 margin/top = 0.0
-margin/right = 137.0
+margin/right = 452.0
 margin/bottom = 39.0
 custom_fonts/font = ExtResource( 6 )
 toggle_mode = true
@@ -163,9 +164,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 2
-margin/left = 141.0
+margin/left = 456.0
 margin/top = 0.0
-margin/right = 278.0
+margin/right = 605.0
 margin/bottom = 39.0
 custom_fonts/font = ExtResource( 6 )
 toggle_mode = true
@@ -181,9 +182,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 2
-margin/left = 282.0
+margin/left = 609.0
 margin/top = 0.0
-margin/right = 419.0
+margin/right = 758.0
 margin/bottom = 39.0
 custom_fonts/font = ExtResource( 6 )
 toggle_mode = true
@@ -198,9 +199,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 2
-margin/left = 423.0
+margin/left = 762.0
 margin/top = 0.0
-margin/right = 562.0
+margin/right = 915.0
 margin/bottom = 39.0
 custom_fonts/font = ExtResource( 6 )
 toggle_mode = true
@@ -209,6 +210,34 @@ shortcut = null
 text = "20X"
 flat = true
 
+[node name="Button" type="Button" parent="options/PanelContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 133.0
+margin/right = 915.0
+margin/bottom = 172.0
+custom_fonts/font = ExtResource( 6 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Skip to end   ->|"
+flat = false
+
+[node name="Panel" type="Panel" parent="options/PanelContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 3
+margin/left = 0.0
+margin/top = 176.0
+margin/right = 915.0
+margin/bottom = 478.0
+
 [node name="reset_btn" type="Button" parent="options/PanelContainer/VBoxContainer"]
 
 focus/ignore_mouse = false
@@ -216,9 +245,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 170.0
-margin/right = 562.0
-margin/bottom = 209.0
+margin/top = 482.0
+margin/right = 915.0
+margin/bottom = 521.0
 custom_fonts/font = ExtResource( 6 )
 toggle_mode = false
 enabled_focus_mode = 2
@@ -237,6 +266,8 @@ flat = false
 [connection signal="toggled" from="options/PanelContainer/VBoxContainer/HBoxContainer/speed_btn_3" to="options" method="_on_speed_btn_3_toggled"]
 
 [connection signal="toggled" from="options/PanelContainer/VBoxContainer/HBoxContainer/speed_btn_4" to="options" method="_on_speed_btn_4_toggled"]
+
+[connection signal="pressed" from="options/PanelContainer/VBoxContainer/Button" to="options" method="_on_Button_pressed"]
 
 [connection signal="pressed" from="options/PanelContainer/VBoxContainer/reset_btn" to="options" method="_on_reset_btn_pressed"]
 

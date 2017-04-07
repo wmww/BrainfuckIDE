@@ -12,7 +12,7 @@ func addOutput(text):
 	updateLabel()
 
 func updateLabel():
-	get_node("VBoxContainer/Control/MarginContainer/label").set_bbcode(history)
+	get_node("VBoxContainer/Control/MarginContainer/label").set_bbcode(history+"_")
 
 func _on_LineEdit_text_entered(text):
 	input += text + "\n"

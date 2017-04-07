@@ -15,6 +15,7 @@ var instr
 var instrToStr = {1: '-', 2: '+', 3: '<', 4: '>', 5: '.', 6: ',', 7: '[', 8: ']'}
 
 # some settings to control appearence
+var skipToEnd = false
 var combineStreak = false
 var combineLoop = false
 
@@ -62,28 +63,38 @@ func addBFSource(sourceIn):
 			instr.append(8)
 
 func _process(delta):
-	delay -= delta
-	
-	if combineLoop && !stack.empty():
-		time = 1.2
-		var i = 0
-		var iMax = 6201
-		while !stack.empty() && i < iMax:
-			runNextOp()
-			i += 1
-		dataManager.blinkOp("[...]", time)
-		delay = time
-	else:
+	if instrIndex < instr.size():
+		delay -= delta
+		var maxIters = 6201 # arbitrary number
+		if skipToEnd:
+			time = 2 * baseOpTime
+			var i = 0
+			while instrIndex < instr.size() && i < maxIters:
+				runNextOp()
+				i += 1
+			dataManager.blinkOp("...", time)
+			delay = time
+		elif combineLoop && !stack.empty():
+			time = 4 * baseOpTime
+			var i = 0
+			while !stack.empty() && instrIndex < instr.size() && i < maxIters:
+				runNextOp()
+				i += 1
+			dataManager.blinkOp("[...]", time)
+			delay = time
+		else:
+			time = baseOpTime
+			while delay < 0:
+				runNextOp()
+		
 		time = baseOpTime
-		while delay < 0:
-			runNextOp()
-	
-	time = baseOpTime
+	else:
+		delay = 0
+		skipToEnd = false
 
 func runNextOp():
 	
 		if instrIndex >= instr.size():
-			delay = 0
 			return
 		
 		var instrI = instrIndex
@@ -190,7 +201,7 @@ func reset():
 	stack = []
 	delay = 0
 	if dataManager:
-		dataManager.reset(1)
+		dataManager.reset(baseOpTime*2)
 	if terminal:
 		terminal.reset()
 

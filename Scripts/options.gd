@@ -41,3 +41,6 @@ func _on_speed_btn_3_toggled( pressed ):
 
 func _on_speed_btn_4_toggled( pressed ):
 	speed_btn_pressed(4)
+
+func _on_Button_pressed():
+	controller.skipToEnd = true

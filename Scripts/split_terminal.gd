@@ -8,8 +8,9 @@ func _ready():
 	pass
 
 func addOutput(text):
-	history+=text
-	updateLabel()
+	if history.length() < 8000:
+		history+=text
+		updateLabel()
 
 func updateLabel():
 	get_node("VBoxContainer/Control/MarginContainer/label").set_bbcode(history+"_")

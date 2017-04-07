@@ -66,7 +66,7 @@ func addBFSource(sourceIn):
 func _process(delta):
 	if instrIndex < instr.size():
 		delay -= delta
-		var maxIters = 6201 # arbitrary number
+		var maxIters = 601 # arbitrary number
 		if skipToEnd:
 			time = 2 * baseOpTime
 			var i = 0
@@ -85,11 +85,13 @@ func _process(delta):
 			delay = time
 		else:
 			if fasterInLoop:
-				time = baseOpTime / (stack.size() + 1)
+				time = baseOpTime / (stack.size()*2 + 1)
 			else:
 				time = baseOpTime
-			while delay < 0:
+			var i = 0
+			while delay < 0 && instrIndex < instr.size() && i < maxIters:
 				runNextOp()
+				i += 1
 		
 		time = baseOpTime
 	else:

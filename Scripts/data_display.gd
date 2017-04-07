@@ -3,7 +3,7 @@ extends Control
 var data
 var elems
 var i=0
-var elemSize=Vector2(300, 200)
+var elemSize=Vector2(500, 200)
 const ElemScene = preload("res://Scenes/data_elem.tscn")
 
 func _ready():

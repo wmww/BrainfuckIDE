@@ -15,7 +15,8 @@ var instr
 var instrToStr = {1: '-', 2: '+', 3: '<', 4: '>', 5: '.', 6: ',', 7: '[', 8: ']'}
 
 # some settings to control appearence
-var combineStreak = true
+var combineStreak = false
+var combineLoop = false
 
 # the index in the source code that we are to run next
 # or the length of the source code array if we are done
@@ -30,7 +31,9 @@ var delay
 # used to speed things up as 
 #var lastOp = 0
 #var streak = 0
-var baseOpTime = 0.4
+var defaultBaseOpTime = 0.4
+var baseOpTime = defaultBaseOpTime
+var time = baseOpTime
 
 func _ready():
 	reset()
@@ -60,8 +63,22 @@ func addBFSource(sourceIn):
 
 func _process(delta):
 	delay -= delta
-	while delay < 0:
-		runNextOp()
+	
+	if combineLoop && !stack.empty():
+		time = 1.2
+		var i = 0
+		var iMax = 6201
+		while !stack.empty() && i < iMax:
+			runNextOp()
+			i += 1
+		dataManager.blinkOp("[...]", time)
+		delay = time
+	else:
+		time = baseOpTime
+		while delay < 0:
+			runNextOp()
+	
+	time = baseOpTime
 
 func runNextOp():
 	
@@ -85,8 +102,6 @@ func runNextOp():
 			while instr.size() > instrI+1 && instr[instrI+1] == c:
 				instrI += 1
 				iters += 1
-		
-		var time = calcTime()
 		
 		if c == 1:
 			dataManager.addVal(-iters, time)
@@ -148,9 +163,9 @@ func findCloseBrace(start):
 	
 	return i
 
-func calcTime():
+#func calcTime():
 	
-	return baseOpTime
+	#return baseOpTime
 	
 	#if streak<3:
 	#	return 0.35

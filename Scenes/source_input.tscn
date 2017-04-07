@@ -7,13 +7,13 @@
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends Node\n\nexport(NodePath) var controller\n\nfunc _ready():\n\tget_node(\"tabs/Quick Code/edit_line/LineEdit\").grab_focus()\n\nfunc addCodeToController(code):\n\tif controller and get_node(controller):\n\t\tget_node(controller).addBFSource(code)\n\telse:\n\t\tprint(\"ERROR: please give the source input a controller\")\n\nfunc source_entered():\n\tvar textbox=get_node(\"tabs/Source Edit/textbox\")\n\taddCodeToController(textbox.get_text())\n\t#textbox.set_text(\"\")\n\nfunc quick_code_entered():\n\tvar lineEdit = get_node(\"tabs/Quick Code/edit_line/LineEdit\")\n\taddCodeToController(lineEdit.get_text())\n\tlineEdit.set_text(\"\")\n\nfunc _on_LineEdit_text_entered(text):\n\tquick_code_entered()\n\n\nfunc _on_minus_btn_pressed():\n\taddCodeToController(\'-\')\n\n\nfunc _on_plus_btn_pressed():\n\taddCodeToController(\'+\')\n\n\nfunc _on_left_btn_pressed():\n\taddCodeToController(\'<\')\n\n\nfunc _on_right_btn_pressed():\n\taddCodeToController(\'>\')\n\n\nfunc _on_dot_btn_pressed():\n\taddCodeToController(\'.\')\n\n\nfunc _on_comma_btn_pressed():\n\taddCodeToController(\',\')\n\n\nfunc _on_open_btn_pressed():\n\taddCodeToController(\'[\')\n\n\nfunc _on_close_btn_pressed():\n\taddCodeToController(\']\')\n\n\nfunc _on_add_textbox_text_entered( text ):\n\tvar code = \"\"\n\tvar op = \"+\"\n\tvar num = int(text)\n\tif num < 0:\n\t\tnum = -num\n\t\top = \"-\"\n\tfor i in range(0, num):\n\t\tcode += op\n\taddCodeToController(code)\n\nfunc _on_move_textbox_text_entered( text ):\n\tvar code = \"\"\n\tvar op = \">\"\n\tvar num = int(text)\n\tif num < 0:\n\t\tnum = -num\n\t\top = \"<\"\n\tfor i in range(0, num):\n\t\tcode += op\n\taddCodeToController(code)\n"
+script/source = "extends Control\n\nexport(NodePath) var controller\n\nfunc _ready():\n\tget_node(\"tabs/Quick Code/edit_line/LineEdit\").grab_focus()\n\nfunc addCodeToController(code):\n\tif controller and get_node(controller):\n\t\tget_node(controller).addBFSource(code)\n\telse:\n\t\tprint(\"ERROR: please give the source input a controller\")\n\nfunc source_entered():\n\tvar textbox=get_node(\"tabs/Source Edit/textbox\")\n\taddCodeToController(textbox.get_text())\n\t#textbox.set_text(\"\")\n\nfunc quick_code_entered():\n\tvar lineEdit = get_node(\"tabs/Quick Code/edit_line/LineEdit\")\n\taddCodeToController(lineEdit.get_text())\n\tlineEdit.set_text(\"\")\n\nfunc _on_LineEdit_text_entered(text):\n\tquick_code_entered()\n\n\nfunc _on_minus_btn_pressed():\n\taddCodeToController(\'-\')\n\n\nfunc _on_plus_btn_pressed():\n\taddCodeToController(\'+\')\n\n\nfunc _on_left_btn_pressed():\n\taddCodeToController(\'<\')\n\n\nfunc _on_right_btn_pressed():\n\taddCodeToController(\'>\')\n\n\nfunc _on_dot_btn_pressed():\n\taddCodeToController(\'.\')\n\n\nfunc _on_comma_btn_pressed():\n\taddCodeToController(\',\')\n\n\nfunc _on_open_btn_pressed():\n\taddCodeToController(\'[\')\n\n\nfunc _on_close_btn_pressed():\n\taddCodeToController(\']\')\n\n\nfunc _on_add_textbox_text_entered( text ):\n\tvar code = \"\"\n\tvar op = \"+\"\n\tvar num = int(text)\n\tif num < 0:\n\t\tnum = -num\n\t\top = \"-\"\n\tfor i in range(0, num):\n\t\tcode += op\n\taddCodeToController(code)\n\nfunc _on_move_textbox_text_entered( text ):\n\tvar code = \"\"\n\tvar op = \">\"\n\tvar num = int(text)\n\tif num < 0:\n\t\tnum = -num\n\t\top = \"<\"\n\tfor i in range(0, num):\n\t\tcode += op\n\taddCodeToController(code)\n"
 
 [sub_resource type="GDScript" id=2]
 
 script/source = "extends LineEdit\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\nfunc _on_text_entered( text ):\n\tset_text(\"\")\n"
 
-[node name="source_input" type="Control"]
+[node name="source_input" type="VBoxContainer"]
 
 anchor/top = 2
 anchor/right = 1
@@ -21,26 +21,25 @@ anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.75
 margin/right = 0.0
-margin/bottom = 0.0
+margin/bottom = -27.0
+alignment = 0
 script/script = SubResource( 1 )
 controller = NodePath("../controller")
 
 [node name="tabs" type="TabContainer" parent="."]
 
-anchor/right = 1
-anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+margin/right = 1653.0
+margin/bottom = 350.0
 custom_fonts/font = ExtResource( 1 )
 tab_align = 1
 tabs_visible = true
@@ -52,7 +51,7 @@ anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/vertical = 3
 margin/left = 4.0
 margin/top = 51.0
 margin/right = 4.0
@@ -111,7 +110,7 @@ editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 68.0
 margin/right = 1645.0
@@ -355,7 +354,7 @@ anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
-size_flags/vertical = 2
+size_flags/vertical = 3
 margin/left = 4.0
 margin/top = 51.0
 margin/right = 4.0
@@ -452,9 +451,9 @@ alignment = 0
 
 [connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="." method="_on_add_textbox_text_entered"]
 
-[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" method="_on_text_entered"]
-
 [connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="." method="_on_move_textbox_text_entered"]
+
+[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" method="_on_text_entered"]
 
 [connection signal="pressed" from="tabs/Source Edit/go_btn" to="." method="source_entered"]
 

@@ -40,7 +40,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
-margin/bottom = -33.0
+margin/bottom = 0.0
 custom_fonts/font = ExtResource( 1 )
 tab_align = 1
 tabs_visible = true
@@ -452,9 +452,9 @@ alignment = 0
 
 [connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="." method="_on_add_textbox_text_entered"]
 
-[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="." method="_on_move_textbox_text_entered"]
-
 [connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" method="_on_text_entered"]
+
+[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="." method="_on_move_textbox_text_entered"]
 
 [connection signal="pressed" from="tabs/Source Edit/go_btn" to="." method="source_entered"]
 

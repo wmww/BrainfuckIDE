@@ -5,7 +5,6 @@
 
 [node name="terminal" type="Control"]
 
-editor/display_folded = true
 anchor/top = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -32,6 +31,34 @@ margin/right = 0.0
 margin/bottom = 0.0
 alignment = 0
 
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 1019.0
+margin/bottom = 68.0
+
+[node name="Label" type="Label" parent="VBoxContainer/PanelContainer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 7.0
+margin/top = 7.0
+margin/right = 1012.0
+margin/bottom = 61.0
+custom_fonts/font = ExtResource( 2 )
+text = "Input/Output"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="Control" type="Control" parent="VBoxContainer"]
 
 focus/ignore_mouse = false
@@ -39,7 +66,7 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 0.0
+margin/top = 72.0
 margin/right = 1019.0
 margin/bottom = 404.0
 
@@ -70,7 +97,7 @@ size_flags/vertical = 3
 margin/left = 20.0
 margin/top = 20.0
 margin/right = 999.0
-margin/bottom = 384.0
+margin/bottom = 312.0
 custom_fonts/normal_font = ExtResource( 2 )
 bbcode/enabled = false
 bbcode/bbcode = "IO will go here"

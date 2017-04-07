@@ -1,274 +1,52 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=6 format=1]
 
-[ext_resource path="res://Scenes/data_display.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scripts/controller.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/controller.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/data_display.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/source_input.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/terminal.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/options.gd" type="Script" id=5]
-[ext_resource path="res://Fonts/Droid-Reg-32.fnt" type="BitmapFont" id=6]
+[ext_resource path="res://Scenes/options.tscn" type="PackedScene" id=5]
 
 [node name="root" type="Node"]
 
-[node name="data_display" parent="." instance=ExtResource( 1 )]
-
-anchor/right = 1
-anchor/bottom = 2
-rect/scale = Vector2( 0.75, 0.75 )
-margin/left = 80.0
-margin/top = 80.0
-margin/right = 80.0
-margin/bottom = 0.5
-
 [node name="controller" type="Node" parent="."]
 
-script/script = ExtResource( 2 )
+script/script = ExtResource( 1 )
 data_node = NodePath("../data_display")
 terminal_node = NodePath("../terminal")
 
+[node name="data_display" parent="." instance=ExtResource( 2 )]
+
+anchor/right = 1
+rect/scale = Vector2( 0.75, 0.75 )
+margin/left = 80.0
+margin/top = 80.0
+margin/right = -236.0
+margin/bottom = 423.0
+
 [node name="source_input" parent="." instance=ExtResource( 3 )]
 
-anchor/top = 1
-margin/top = 354.0
+anchor/bottom = 2
+margin/top = 0.3
+margin/bottom = 0.6
 
 [node name="terminal" parent="." instance=ExtResource( 4 )]
 
-editor/display_folded = false
-
-[node name="options" type="Control" parent="."]
-
-anchor/left = 1
-anchor/top = 1
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 1016.0
-margin/top = 919.0
-margin/right = 87.0
-margin/bottom = 384.0
-script/script = ExtResource( 5 )
-controller_node = NodePath("../controller")
-
-[node name="PanelContainer" type="PanelContainer" parent="options"]
-
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
+anchor/top = 2
+anchor/right = 3
+anchor/bottom = 2
 margin/left = 0.0
-margin/top = 0.0
+margin/top = 0.6
 margin/right = 0.0
-margin/bottom = 0.0
+margin/bottom = 1.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="options/PanelContainer"]
+[node name="options" parent="." instance=ExtResource( 5 )]
 
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 7.0
-margin/top = 7.0
-margin/right = 922.0
-margin/bottom = 528.0
-alignment = 0
-
-[node name="combine_streaks_btn" type="CheckButton" parent="options/PanelContainer/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
+anchor/left = 3
+anchor/top = 2
+anchor/bottom = 2
 margin/left = 0.0
-margin/top = 0.0
-margin/right = 915.0
-margin/bottom = 41.0
-custom_fonts/font = ExtResource( 6 )
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-text = "Combine Streaks"
-flat = false
-align = 0
-
-[node name="combine_loops_btn" type="CheckButton" parent="options/PanelContainer/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 45.0
-margin/right = 915.0
-margin/bottom = 86.0
-custom_fonts/font = ExtResource( 6 )
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-text = "Combine Loops"
-flat = false
-align = 0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="options/PanelContainer/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 90.0
-margin/right = 915.0
-margin/bottom = 129.0
-alignment = 0
-
-[node name="Label" type="Label" parent="options/PanelContainer/VBoxContainer/HBoxContainer"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 0
-size_flags/stretch_ratio = 2.0
-margin/left = 0.0
-margin/top = 3.0
-margin/right = 299.0
-margin/bottom = 36.0
-custom_fonts/font = ExtResource( 6 )
-text = "Speed"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="speed_btn_1" type="Button" parent="options/PanelContainer/VBoxContainer/HBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 303.0
-margin/top = 0.0
-margin/right = 452.0
-margin/bottom = 39.0
-custom_fonts/font = ExtResource( 6 )
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-text = "0.5X"
-flat = true
-
-[node name="speed_btn_2" type="Button" parent="options/PanelContainer/VBoxContainer/HBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 456.0
-margin/top = 0.0
-margin/right = 605.0
-margin/bottom = 39.0
-custom_fonts/font = ExtResource( 6 )
-toggle_mode = true
-is_pressed = true
-enabled_focus_mode = 2
-shortcut = null
-text = "1X"
-flat = true
-
-[node name="speed_btn_3" type="Button" parent="options/PanelContainer/VBoxContainer/HBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 609.0
-margin/top = 0.0
-margin/right = 758.0
-margin/bottom = 39.0
-custom_fonts/font = ExtResource( 6 )
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-text = "4X"
-flat = true
-
-[node name="speed_btn_4" type="Button" parent="options/PanelContainer/VBoxContainer/HBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 762.0
-margin/top = 0.0
-margin/right = 915.0
-margin/bottom = 39.0
-custom_fonts/font = ExtResource( 6 )
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-text = "20X"
-flat = true
-
-[node name="Button" type="Button" parent="options/PanelContainer/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 133.0
-margin/right = 915.0
-margin/bottom = 172.0
-custom_fonts/font = ExtResource( 6 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Skip to end   ->|"
-flat = false
-
-[node name="Panel" type="Panel" parent="options/PanelContainer/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 176.0
-margin/right = 915.0
-margin/bottom = 478.0
-
-[node name="reset_btn" type="Button" parent="options/PanelContainer/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 482.0
-margin/right = 915.0
-margin/bottom = 521.0
-custom_fonts/font = ExtResource( 6 )
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "Reset Everything"
-flat = false
-
-[connection signal="toggled" from="options/PanelContainer/VBoxContainer/combine_streaks_btn" to="options" method="_on_combine_streaks_btn_toggled"]
-
-[connection signal="toggled" from="options/PanelContainer/VBoxContainer/combine_loops_btn" to="options" method="_on_combine_loops_btn_toggled"]
-
-[connection signal="toggled" from="options/PanelContainer/VBoxContainer/HBoxContainer/speed_btn_1" to="options" method="_on_speed_btn_1_toggled"]
-
-[connection signal="toggled" from="options/PanelContainer/VBoxContainer/HBoxContainer/speed_btn_2" to="options" method="_on_speed_btn_2_toggled"]
-
-[connection signal="toggled" from="options/PanelContainer/VBoxContainer/HBoxContainer/speed_btn_3" to="options" method="_on_speed_btn_3_toggled"]
-
-[connection signal="toggled" from="options/PanelContainer/VBoxContainer/HBoxContainer/speed_btn_4" to="options" method="_on_speed_btn_4_toggled"]
-
-[connection signal="pressed" from="options/PanelContainer/VBoxContainer/Button" to="options" method="_on_Button_pressed"]
-
-[connection signal="pressed" from="options/PanelContainer/VBoxContainer/reset_btn" to="options" method="_on_reset_btn_pressed"]
+margin/top = 0.6
+margin/right = 0.0
+margin/bottom = 1.0
 
 

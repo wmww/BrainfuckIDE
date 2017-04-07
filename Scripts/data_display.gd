@@ -7,10 +7,17 @@ var elemSize=Vector2(400, 200)
 const ElemScene = preload("res://Scenes/data_elem.tscn")
 const AnimData = preload("anim_data.gd")
 var offsetAnim = AnimData.new(0)
+var zoom = 1
+
+var dataHolder
+var marker
 
 func _ready():
 	data=[]
 	elems=[]
+	
+	dataHolder = get_node("data_holder")
+	marker = get_node("data_holder/marker")
 	
 	for i in range(0, 24):
 		data.append(0)
@@ -22,7 +29,7 @@ func _ready():
 func _process(delta):
 	if !offsetAnim.done():
 		offsetAnim.advance(delta)
-		get_node("data_holder").set_pos(Vector2(offsetAnim.get(), 0))
+		dataHolder.set_pos(Vector2(offsetAnim.get(), elemSize.y/2.0))
 
 func movePtr(offset, time):
 	i+=offset
@@ -40,16 +47,16 @@ func movePtr(offset, time):
 	moveMarker(time)
 
 func moveMarker(time):
-	var pos = Vector2(elemSize.x*(i+0.5), elemSize.y)
-	get_node("data_holder/marker").moveTo(pos, time)
+	var pos = Vector2(elemSize.x*(i+0.5), elemSize.y/2)
+	marker.moveTo(pos, time)
 	
-	var maxRight = get_size().x - pos.x - elemSize.x/2
-	if get_node("data_holder").get_pos().x > maxRight:
+	var maxRight = get_size().x - (pos.x + elemSize.x/2) * zoom
+	if dataHolder.get_pos().x > maxRight:
 		offsetAnim.start(maxRight, time)
 	
-	var minRight = - pos.x + elemSize.x/2
-	if get_node("data_holder").get_pos().x < minRight:
-		offsetAnim.start(minRight, time)
+	var maxLeft = (- pos.x + elemSize.x/2) * zoom
+	if dataHolder.get_pos().x < maxLeft:
+		offsetAnim.start(maxLeft, time)
 
 func addVal(amount, time):
 	data[i] += amount
@@ -69,12 +76,12 @@ func setValAscii(newVal, time):
 	setVal(newVal.to_ascii()[0], time)
 	
 func blinkOp(opText, time):
-	get_node("data_holder/marker").blink(opText, time)
+	marker.blink(opText, time)
 
 func addElemDisplay():
 	var elem = ElemScene.instance()
-	get_node("data_holder").add_child(elem)
-	elem.set_pos(Vector2(elems.size()*elemSize.x, 0))
+	dataHolder.add_child(elem)
+	elem.set_pos(Vector2(elems.size()*elemSize.x, -elemSize.y/2))
 	elem.set_size(elemSize)
 	elems.push_back(elem)
 
@@ -88,6 +95,16 @@ func reset(time):
 	i=0
 	
 	moveMarker(time)
+
+func setZoom(newZoom):
+	var markPos = marker.get_pos().x
+	var dataPos = dataHolder.get_pos().x
+	var markPosScreen = dataPos + markPos*zoom
+	var newOffset = markPosScreen - markPos*newZoom
+	offsetAnim.start(newOffset, 0)
+	dataHolder.set_pos(Vector2(newOffset, elemSize.y/2.0))
+	zoom = newZoom
+	get_node("data_holder").set_scale(Vector2(newZoom, newZoom))
 
 func throwError(msg):
 	print("ERROR: " + msg)

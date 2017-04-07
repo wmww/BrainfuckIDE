@@ -52,3 +52,5 @@ func _on_Button_pressed():
 	controller.skipToEnd = true
 	speed_btn_pressed(2)
 	
+func _on_zoom_slider_value_changed( value ):
+	controller.dataManager.setZoom(value)

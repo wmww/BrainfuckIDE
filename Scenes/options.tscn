@@ -63,6 +63,55 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="HBoxContainer 2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 58.0
+margin/right = 915.0
+margin/bottom = 91.0
+alignment = 0
+
+[node name="Label1" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer 2"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 455.0
+margin/bottom = 33.0
+custom_fonts/font = ExtResource( 3 )
+text = "Zoom"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="zoom_slider" type="HSlider" parent="PanelContainer/VBoxContainer/HBoxContainer 2"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 459.0
+margin/top = 8.0
+margin/right = 915.0
+margin/bottom = 24.0
+range/min = 0.25
+range/max = 1.0
+range/step = 0.01
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+tick_count = 0
+ticks_on_borders = true
+focus_mode = 2
+
 [node name="combine_streaks_btn" type="CheckButton" parent="PanelContainer/VBoxContainer"]
 
 focus/ignore_mouse = false
@@ -70,9 +119,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 58.0
+margin/top = 95.0
 margin/right = 915.0
-margin/bottom = 99.0
+margin/bottom = 136.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = true
 enabled_focus_mode = 2
@@ -88,9 +137,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 103.0
+margin/top = 140.0
 margin/right = 915.0
-margin/bottom = 144.0
+margin/bottom = 181.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = true
 enabled_focus_mode = 2
@@ -106,9 +155,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 148.0
+margin/top = 185.0
 margin/right = 915.0
-margin/bottom = 189.0
+margin/bottom = 226.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = true
 enabled_focus_mode = 2
@@ -124,9 +173,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 193.0
+margin/top = 230.0
 margin/right = 915.0
-margin/bottom = 232.0
+margin/bottom = 269.0
 alignment = 0
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
@@ -222,9 +271,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 236.0
+margin/top = 273.0
 margin/right = 915.0
-margin/bottom = 275.0
+margin/bottom = 312.0
 alignment = 2
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer1"]
@@ -251,7 +300,7 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 279.0
+margin/top = 316.0
 margin/right = 915.0
 margin/bottom = 478.0
 
@@ -271,6 +320,8 @@ enabled_focus_mode = 2
 shortcut = null
 text = "Reset Everything"
 flat = false
+
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/HBoxContainer 2/zoom_slider" to="." method="_on_zoom_slider_value_changed"]
 
 [connection signal="toggled" from="PanelContainer/VBoxContainer/combine_streaks_btn" to="." method="_on_combine_streaks_btn_toggled"]
 

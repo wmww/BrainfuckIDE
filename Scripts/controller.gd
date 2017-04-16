@@ -85,7 +85,7 @@ func _process(delta):
 			delay = time
 		else:
 			if fasterInLoop:
-				time = baseOpTime / (stack.size()*2 + 1)
+				time = baseOpTime / (stack.size()*3 + 1)
 			else:
 				time = baseOpTime
 			var i = 0

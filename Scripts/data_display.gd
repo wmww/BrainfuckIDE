@@ -41,7 +41,7 @@ func movePtr(offset, time):
 	while data.size() <= i:
 		data.push_back(0)
 	
-	while elems.size() <= i:
+	while elems.size() <= i + 4:
 		addElemDisplay()
 	
 	moveMarker(time)
@@ -101,8 +101,10 @@ func setZoom(newZoom):
 	var dataPos = dataHolder.get_pos().x
 	var markPosScreen = dataPos + markPos*zoom
 	var newOffset = markPosScreen - markPos*newZoom
-	offsetAnim.start(newOffset, 0)
-	dataHolder.set_pos(Vector2(newOffset, elemSize.y/2.0))
+	if newOffset > 0:
+		newOffset = 0
+	offsetAnim.start(0, 0)
+	dataHolder.set_pos(Vector2(0, elemSize.y/2.0))
 	zoom = newZoom
 	get_node("data_holder").set_scale(Vector2(newZoom, newZoom))
 

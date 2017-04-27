@@ -1,20 +1,43 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
-[ext_resource path="res://Scripts/controller.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/data_display.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/source_input.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/terminal.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/options.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/data_display.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/source_input.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/terminal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/options.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/controller.gd" type="Script" id=5]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Control
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	pass
+"
 
 [node name="root" type="Node"]
 
-[node name="controller" type="Node" parent="."]
+[node name="Control" type="Control" parent="."]
 
-script/script = ExtResource( 1 )
-data_node = NodePath("../data_display")
-terminal_node = NodePath("../VBoxContainer/HBoxContainer/terminal")
+anchor/right = 1
+anchor/bottom = 1
+rect/scale = Vector2( 0.5, 0.5 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = -1338.0
+margin/bottom = -776.0
+script/script = SubResource( 1 )
 
-[node name="data_display" parent="." instance=ExtResource( 2 )]
+[node name="data_display" parent="Control" instance=ExtResource( 1 )]
 
 anchor/bottom = 2
 margin/left = 80.0
@@ -22,7 +45,7 @@ margin/top = 80.0
 margin/right = 80.0
 margin/bottom = 0.4
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 
 anchor/top = 2
 anchor/right = 1
@@ -37,17 +60,17 @@ margin/right = 0.0
 margin/bottom = 0.0
 alignment = 0
 
-[node name="source_input" parent="VBoxContainer" instance=ExtResource( 3 )]
+[node name="source_input" parent="Control/VBoxContainer" instance=ExtResource( 2 )]
 
 anchor/top = 0
 anchor/right = 0
 anchor/bottom = 0
 margin/top = 0.0
-margin/right = 1653.0
-margin/bottom = 350.0
+margin/right = 2362.0
+margin/bottom = 403.0
 controller = NodePath("../../controller")
 
-[node name="Panel" type="Control" parent="VBoxContainer"]
+[node name="Panel" type="Control" parent="Control/VBoxContainer"]
 
 rect/min_size = Vector2( 12, 12 )
 focus/ignore_mouse = false
@@ -55,55 +78,61 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 354.0
-margin/right = 1653.0
-margin/bottom = 366.0
+margin/top = 407.0
+margin/right = 2362.0
+margin/bottom = 419.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 370.0
-margin/right = 1653.0
-margin/bottom = 382.0
+margin/top = 423.0
+margin/right = 2362.0
+margin/bottom = 826.0
 alignment = 0
 
-[node name="terminal" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
+[node name="terminal" parent="Control/VBoxContainer/HBoxContainer" instance=ExtResource( 3 )]
 
 anchor/top = 0
 anchor/bottom = 0
 size_flags/horizontal = 3
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 816.0
-margin/bottom = 12.0
+margin/right = 1171.0
+margin/bottom = 403.0
 
-[node name="Panel1" type="Control" parent="VBoxContainer/HBoxContainer"]
+[node name="Panel1" type="Control" parent="Control/VBoxContainer/HBoxContainer"]
 
 rect/min_size = Vector2( 12, 12 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 820.0
+margin/left = 1175.0
 margin/top = 0.0
-margin/right = 832.0
-margin/bottom = 12.0
+margin/right = 1187.0
+margin/bottom = 403.0
 
-[node name="options" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 5 )]
+[node name="options" parent="Control/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
 
 anchor/left = 0
 anchor/top = 0
 anchor/right = 0
 anchor/bottom = 0
 size_flags/horizontal = 3
-margin/left = 836.0
+margin/left = 1191.0
 margin/top = 0.0
-margin/right = 1653.0
-margin/bottom = 12.0
+margin/right = 2362.0
+margin/bottom = 403.0
 controller_node = NodePath("../../../controller")
+
+[node name="controller" type="Node" parent="Control"]
+
+script/script = ExtResource( 5 )
+data_node = NodePath("../data_display")
+terminal_node = NodePath("../VBoxContainer/HBoxContainer/terminal")
 
 

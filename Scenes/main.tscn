@@ -25,8 +25,13 @@ func _ready():
 	#print(get_minimum_size())
 
 func hasBeenResized():
-	var newScale = get_viewport().get_rect().size / myMinSize
+	var winSize = get_viewport().get_rect().size
+	var newScale2D = winSize / myMinSize
+	var newScale1D = min(newScale2D.x, newScale2D.y)
+	newScale1D = floor(newScale1D * 8) / 8.0
+	var newScale = Vector2(newScale1D, newScale1D)
 	set_scale(newScale)
+	set_size(winSize / newScale)
 	#print(newScale)
 
 func _on_Control_resized():

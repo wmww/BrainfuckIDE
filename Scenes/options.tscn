@@ -14,10 +14,10 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 1016.0
-margin/top = 919.0
-margin/right = 87.0
-margin/bottom = 384.0
+margin/left = 1024.0
+margin/top = 600.0
+margin/right = 95.0
+margin/bottom = 65.0
 script/script = ExtResource( 1 )
 controller_node = NodePath("../controller")
 

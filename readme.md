@@ -1,2 +1,17 @@
-# IDE for the esoteric programming language Brainfuck
-This is a graphical Brainfuck IDE/debugger built in Godot engine. Standalone builds for Linux, Windows and Mac available here: [https://github.com/william01110111/BrainfuckIDE_builds](https://github.com/william01110111/BrainfuckIDE_builds).
+# Graphical Brainfuck IDE
+
+An intuitive, featureful and visually appealing [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) IDE/debugger built in [Godot](https://godotengine.org/).
+
+Standalone builds for Linux, Windows and Mac available [here](https://github.com/william01110111/BrainfuckIDE_builds).
+
+Brainfuck is a relatively well known [esoteric programming language](https://en.wikipedia.org/wiki/Esoteric_programming_language) made up of only 8 single-character commands (`+`, `-`, `>`, `<`, `,`, `.`, `[` and `]`). While there are numerous Brainfuck interpreters and compilers (including [this ultra-fast one](https://github.com/wmww/Brainfuck) I wrote), this project aims to make Brainfuck simple, easy and fun.
+
+Features:
+* REPL-like behavior
+* Variety of input methods
+* Useful sample code
+* Animated real-time data tape with adjustable zoom
+* IO panel
+* speed-of-execution controls
+
+

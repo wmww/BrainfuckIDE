@@ -7,11 +7,135 @@
 
 [sub_resource type="GDScript" id=1]
 
-script/source = "extends Control\n\nexport(NodePath) var controller\n\nfunc _ready():\n\tget_node(\"tabs/Quick Code/edit_line/LineEdit\").grab_focus()\n\nfunc addCodeToController(code):\n\tif controller and get_node(controller):\n\t\tget_node(controller).addBFSource(code)\n\telse:\n\t\tprint(\"ERROR: please give the source input a controller\")\n\nfunc source_entered():\n\tvar textbox=get_node(\"tabs/Source Edit/textbox\")\n\taddCodeToController(textbox.get_text())\n\t#textbox.set_text(\"\")\n\nfunc quick_code_entered():\n\tvar lineEdit = get_node(\"tabs/Quick Code/edit_line/LineEdit\")\n\taddCodeToController(lineEdit.get_text())\n\tlineEdit.set_text(\"\")\n\nfunc _on_LineEdit_text_entered(text):\n\tquick_code_entered()\n\n\nfunc _on_minus_btn_pressed():\n\taddCodeToController(\'-\')\n\n\nfunc _on_plus_btn_pressed():\n\taddCodeToController(\'+\')\n\n\nfunc _on_left_btn_pressed():\n\taddCodeToController(\'<\')\n\n\nfunc _on_right_btn_pressed():\n\taddCodeToController(\'>\')\n\n\nfunc _on_dot_btn_pressed():\n\taddCodeToController(\'.\')\n\n\nfunc _on_comma_btn_pressed():\n\taddCodeToController(\',\')\n\n\nfunc _on_open_btn_pressed():\n\taddCodeToController(\'[\')\n\n\nfunc _on_close_btn_pressed():\n\taddCodeToController(\']\')\n\n\nfunc _on_add_textbox_text_entered( text ):\n\tvar code = \"\"\n\tvar op = \"+\"\n\tvar num = int(text)\n\tif num < 0:\n\t\tnum = -num\n\t\top = \"-\"\n\tfor i in range(0, num):\n\t\tcode += op\n\taddCodeToController(code)\n\nfunc _on_move_textbox_text_entered( text ):\n\tvar code = \"\"\n\tvar op = \">\"\n\tvar num = int(text)\n\tif num < 0:\n\t\tnum = -num\n\t\top = \"<\"\n\tfor i in range(0, num):\n\t\tcode += op\n\taddCodeToController(code)\n"
+script/source = "extends Control
+
+export(NodePath) var controller
+
+var quickCodeHistory = []
+var quickCodeHistoryIndex = null
+
+func _ready():
+	get_node(\"tabs/Quick Code/edit_line/LineEdit\").grab_focus()
+
+func addCodeToController(code):
+	if controller and get_node(controller):
+		get_node(controller).addBFSource(code)
+	else:
+		print(\"ERROR: please give the source input a controller\")
+
+func source_entered():
+	var textbox=get_node(\"tabs/Source Edit/textbox\")
+	addCodeToController(textbox.get_text())
+	#textbox.set_text(\"\")
+
+func quick_code_entered():
+	var lineEdit = get_node(\"tabs/Quick Code/edit_line/LineEdit\")
+	var text = lineEdit.get_text()
+	quickCodeHistory.append(text)
+	quickCodeHistoryIndex = null
+	addCodeToController(text)
+	lineEdit.set_text(\"\")
+
+func _on_LineEdit_text_entered(text):
+	quick_code_entered()
+
+
+func _on_minus_btn_pressed():
+	addCodeToController('-')
+
+
+func _on_plus_btn_pressed():
+	addCodeToController('+')
+
+
+func _on_left_btn_pressed():
+	addCodeToController('<')
+
+
+func _on_right_btn_pressed():
+	addCodeToController('>')
+
+
+func _on_dot_btn_pressed():
+	addCodeToController('.')
+
+
+func _on_comma_btn_pressed():
+	addCodeToController(',')
+
+
+func _on_open_btn_pressed():
+	addCodeToController('[')
+
+
+func _on_close_btn_pressed():
+	addCodeToController(']')
+
+
+func _on_add_textbox_text_entered( text ):
+	var code = \"\"
+	var op = \"+\"
+	var num = int(text)
+	if num < 0:
+		num = -num
+		op = \"-\"
+	for i in range(0, num):
+		code += op
+	addCodeToController(code)
+
+func _on_move_textbox_text_entered( text ):
+	var code = \"\"
+	var op = \">\"
+	var num = int(text)
+	if num < 0:
+		num = -num
+		op = \"<\"
+	for i in range(0, num):
+		code += op
+	addCodeToController(code)
+
+func quickCodeHistoryMove(amount):
+	var lineEdit = get_node(\"tabs/Quick Code/edit_line/LineEdit\")
+	lineEdit.grab_focus()
+	if quickCodeHistoryIndex == null:
+		quickCodeHistoryIndex = len(quickCodeHistory)
+	quickCodeHistoryIndex += amount
+	
+	if quickCodeHistory.empty():
+		quickCodeHistoryIndex = null
+	elif quickCodeHistoryIndex < 0:
+		quickCodeHistoryIndex = 0
+	elif quickCodeHistoryIndex >= len(quickCodeHistory):
+		quickCodeHistoryIndex = null
+		lineEdit.set_text(\"\")
+		
+	if quickCodeHistoryIndex != null:
+		lineEdit.set_text(quickCodeHistory[quickCodeHistoryIndex])
+
+func _on_focus_up_focus_enter():
+	print(\"up!\")
+	quickCodeHistoryMove(1)
+
+func _on_focus_down_focus_enter():
+	quickCodeHistoryMove(-1)
+"
 
 [sub_resource type="GDScript" id=2]
 
-script/source = "extends LineEdit\n\n# class member variables go here, for example:\n# var a = 2\n# var b = \"textvar\"\n\nfunc _ready():\n\t# Called every time the node is added to the scene.\n\t# Initialization here\n\tpass\n\nfunc _on_text_entered( text ):\n\tset_text(\"\")\n"
+script/source = "extends LineEdit
+
+# class member variables go here, for example:
+# var a = 2
+# var b = \"textvar\"
+
+func _ready():
+	# Called every time the node is added to the scene.
+	# Initialization here
+	pass
+
+func _on_text_entered( text ):
+	set_text(\"\")
+"
 
 [node name="source_input" type="VBoxContainer"]
 
@@ -60,6 +184,8 @@ alignment = 0
 
 [node name="edit_line" type="HBoxContainer" parent="tabs/Quick Code"]
 
+focus_neighbour/top = NodePath("focus_up")
+focus_neighbour/bottom = NodePath("focus_down")
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -70,15 +196,28 @@ margin/right = 1645.0
 margin/bottom = 64.0
 alignment = 0
 
+[node name="focus_up" type="Control" parent="tabs/Quick Code/edit_line"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 64.0
+
 [node name="LineEdit" type="LineEdit" parent="tabs/Quick Code/edit_line"]
 
+focus_neighbour/top = NodePath("../focus_up")
+focus_neighbour/bottom = NodePath("../focus_down")
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 3
 size_flags/vertical = 2
-margin/left = 0.0
+margin/left = 4.0
 margin/top = 0.0
-margin/right = 1572.0
+margin/right = 1568.0
 margin/bottom = 64.0
 custom_fonts/font = ExtResource( 2 )
 placeholder/text = "Brainfuck code"
@@ -93,9 +232,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 1576.0
+margin/left = 1572.0
 margin/top = 0.0
-margin/right = 1645.0
+margin/right = 1641.0
 margin/bottom = 64.0
 custom_fonts/font = ExtResource( 1 )
 toggle_mode = false
@@ -104,9 +243,19 @@ shortcut = null
 text = "Run"
 flat = false
 
+[node name="focus_down" type="Control" parent="tabs/Quick Code/edit_line"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 1645.0
+margin/top = 0.0
+margin/right = 1645.0
+margin/bottom = 64.0
+
 [node name="HBoxContainer" type="HBoxContainer" parent="tabs/Quick Code"]
 
-editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -424,12 +573,16 @@ size_flags/vertical = 3
 margin/left = 0.0
 margin/top = 0.0
 margin/right = 1645.0
-margin/bottom = 0.0
+margin/bottom = 295.0
 alignment = 0
+
+[connection signal="focus_enter" from="tabs/Quick Code/edit_line/focus_up" to="." method="_on_focus_up_focus_enter"]
 
 [connection signal="text_entered" from="tabs/Quick Code/edit_line/LineEdit" to="." method="_on_LineEdit_text_entered"]
 
 [connection signal="pressed" from="tabs/Quick Code/edit_line/Button" to="." method="quick_code_entered"]
+
+[connection signal="focus_enter" from="tabs/Quick Code/edit_line/focus_down" to="." method="_on_focus_down_focus_enter"]
 
 [connection signal="pressed" from="tabs/Quick Code/HBoxContainer/minus_btn" to="." method="_on_minus_btn_pressed"]
 
@@ -447,13 +600,13 @@ alignment = 0
 
 [connection signal="pressed" from="tabs/Quick Code/HBoxContainer/close_btn" to="." method="_on_close_btn_pressed"]
 
-[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="." method="_on_add_textbox_text_entered"]
-
 [connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" method="_on_text_entered"]
 
-[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="." method="_on_move_textbox_text_entered"]
+[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="." method="_on_add_textbox_text_entered"]
 
 [connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" method="_on_text_entered"]
+
+[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="." method="_on_move_textbox_text_entered"]
 
 [connection signal="pressed" from="tabs/Source Edit/go_btn" to="." method="source_entered"]
 

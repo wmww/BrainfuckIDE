@@ -1,7 +1,7 @@
 # Graphical Brainfuck IDE
-__An intuitive, featureful and visually appealing [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) IDE/debugger built in [Godot](https://godotengine.org/)__
+_An intuitive, featureful and visually appealing [Brainfuck](https://en.wikipedia.org/wiki/Brainfuck) IDE/debugger built in [Godot](https://godotengine.org/)_
 
-_Standalone builds_ for Linux, Windows and Mac available [here](https://github.com/william01110111/BrainfuckIDE_builds).
+__Standalone builds__ for Linux, Windows and Mac available [here](https://github.com/william01110111/BrainfuckIDE_builds).
 
 ## About
 Brainfuck is a relatively well known [esoteric programming language](https://en.wikipedia.org/wiki/Esoteric_programming_language) made up of only 8 single-character commands (`+`, `-`, `>`, `<`, `,`, `.`, `[` and `]`). While there are numerous Brainfuck interpreters and compilers (including [this ultra-fast one](https://github.com/wmww/Brainfuck) I wrote), this project aims to make Brainfuck simple, easy and fun.

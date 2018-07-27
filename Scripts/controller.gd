@@ -182,8 +182,8 @@ func findCloseBrace(start):
 	
 	return i
 
-func setMaxValue(maxVal):
-	dataManager.setMaxValue(maxVal)
+func setModValue(modVal):
+	dataManager.setModValue(modVal)
 
 #func calcTime():
 	

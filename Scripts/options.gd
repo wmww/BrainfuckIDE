@@ -14,9 +14,9 @@ func _on_reset_btn_pressed():
 
 func _on_enforce_8bit_btn_toggled( pressed ):
 	if pressed:
-		controller.setMaxValue(256)
+		controller.setModValue(256)
 	else:
-		controller.setMaxValue(null)
+		controller.setModValue(null)
 
 func _on_combine_streaks_btn_toggled( pressed ):
 	controller.combineStreak = pressed

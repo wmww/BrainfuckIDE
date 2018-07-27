@@ -175,7 +175,7 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 185.0
 margin/right = 915.0
-margin/bottom = 181.0
+margin/bottom = 226.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = true
 enabled_focus_mode = 2
@@ -191,9 +191,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 256.0
+margin/top = 230.0
 margin/right = 915.0
-margin/bottom = 295.0
+margin/bottom = 269.0
 alignment = 0
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
@@ -289,9 +289,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 299.0
+margin/top = 273.0
 margin/right = 915.0
-margin/bottom = 338.0
+margin/bottom = 312.0
 alignment = 2
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer1"]
@@ -318,7 +318,7 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 342.0
+margin/top = 316.0
 margin/right = 915.0
 margin/bottom = 478.0
 

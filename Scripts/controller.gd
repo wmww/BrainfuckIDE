@@ -182,6 +182,9 @@ func findCloseBrace(start):
 	
 	return i
 
+func setMaxValue(maxVal):
+	dataManager.setMaxValue(maxVal)
+
 #func calcTime():
 	
 	#return baseOpTime

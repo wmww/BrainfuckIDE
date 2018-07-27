@@ -2,6 +2,7 @@ extends Control
 
 var data
 var elems
+var maxValue = 0
 var i=0
 var elemSize=Vector2(400, 200)
 const ElemScene = preload("res://Scenes/data_elem.tscn")
@@ -60,6 +61,7 @@ func moveMarker(time):
 
 func addVal(amount, time):
 	data[i] += amount
+	wrapValue(i)
 	elems[i].changeVal(data[i], time)
 	
 func getVal():
@@ -67,7 +69,30 @@ func getVal():
 	
 func setVal(newVal, time):
 	data[i] = newVal
+	wrapValue(i)
 	elems[i].changeVal(data[i], time)
+	
+func setMaxValue(maxVal):
+	if maxVal < 0:
+		return
+	maxValue = maxVal
+	
+	for index in range(0, data.size()):
+		var backup = data[index]
+		wrapValue(index)
+		if data[index] != backup:
+			elems[index].changeVal(data[index], 0)
+	
+func wrapValue(index):
+	if maxValue == 0:
+		return # there is nothing to do
+	
+	if index < 0 || index >= data.size():
+		throwError("This field doesn't exist!")
+		return
+	
+	if data[index] >= maxValue || data[index] < 0:
+		data[index] = (data[index] % maxValue + maxValue) % maxValue
 	
 func getValAscii():
 	return RawArray([data[i]]).get_string_from_ascii()

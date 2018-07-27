@@ -2,7 +2,7 @@ extends Control
 
 var data
 var elems
-var maxValue = 0
+var maxValue = null
 var i=0
 var elemSize=Vector2(400, 200)
 const ElemScene = preload("res://Scenes/data_elem.tscn")
@@ -73,7 +73,7 @@ func setVal(newVal, time):
 	elems[i].changeVal(data[i], time)
 	
 func setMaxValue(maxVal):
-	if maxVal < 0:
+	if maxVal < 2 && maxVal != null:
 		return
 	maxValue = maxVal
 	
@@ -84,7 +84,7 @@ func setMaxValue(maxVal):
 			elems[index].changeVal(data[index], 0)
 	
 func wrapValue(index):
-	if maxValue == 0:
+	if maxValue == null:
 		return # there is nothing to do
 	
 	if index < 0 || index >= data.size():

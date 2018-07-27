@@ -2,6 +2,9 @@ extends Control
 
 var data
 var elems
+# Maximal ideal of the residue field representing all possible values
+# Used for the strict mode that enforces positive, 8-bit values (mod 256)
+var modValue = null
 var i=0
 var elemSize=Vector2(400, 200)
 const ElemScene = preload("res://Scenes/data_elem.tscn")
@@ -60,6 +63,7 @@ func moveMarker(time):
 
 func addVal(amount, time):
 	data[i] += amount
+	wrapValue(i)
 	elems[i].changeVal(data[i], time)
 	
 func getVal():
@@ -67,7 +71,30 @@ func getVal():
 	
 func setVal(newVal, time):
 	data[i] = newVal
+	wrapValue(i)
 	elems[i].changeVal(data[i], time)
+	
+func setModValue(modVal):
+	if modVal < 2 && modVal != null:
+		return
+	modValue = modVal
+	
+	for index in range(0, data.size()):
+		var backup = data[index]
+		wrapValue(index)
+		if data[index] != backup:
+			elems[index].changeVal(data[index], 0)
+	
+func wrapValue(index):
+	if modValue == null:
+		return # there is nothing to do
+	
+	if index < 0 || index >= data.size():
+		throwError("This field doesn't exist!")
+		return
+	
+	if data[index] >= modValue || data[index] < 0:
+		data[index] = (data[index] % modValue + modValue) % modValue
 	
 func getValAscii():
 	return RawArray([data[i]]).get_string_from_ascii()

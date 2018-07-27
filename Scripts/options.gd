@@ -12,6 +12,12 @@ func _ready():
 func _on_reset_btn_pressed():
 	controller.reset()
 
+func _on_enforce_8bit_btn_toggled( pressed ):
+	if pressed:
+		controller.setModValue(256)
+	else:
+		controller.setModValue(null)
+
 func _on_combine_streaks_btn_toggled( pressed ):
 	controller.combineStreak = pressed
 

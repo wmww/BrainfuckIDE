@@ -182,6 +182,9 @@ func findCloseBrace(start):
 	
 	return i
 
+func setModValue(modVal):
+	dataManager.setModValue(modVal)
+
 #func calcTime():
 	
 	#return baseOpTime

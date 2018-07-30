@@ -19,6 +19,7 @@ var skipToEnd = false
 var combineStreak = true
 var combineLoop = false
 var fasterInLoop = true
+const default_enforce_8bit = false
 
 # the index in the source code that we are to run next
 # or the length of the source code array if we are done

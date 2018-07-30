@@ -19,7 +19,11 @@ margin/top = 600.0
 margin/right = 95.0
 margin/bottom = 65.0
 script/script = ExtResource( 1 )
-controller_node = NodePath("../controller")
+controller_node = null
+combine_streaks_node = NodePath("PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer/combine_streaks_btn")
+combine_loops_node = NodePath("PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer/combine_loops_btn")
+faster_in_loop_node = NodePath("PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer 2/faster_in_loop_btn")
+enforce_8bit_node = NodePath("PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer 2/enforce_8bit")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 
@@ -65,6 +69,7 @@ max_lines_visible = -1
 
 [node name="HBoxContainer 2" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = false
 size_flags/horizontal = 2
@@ -112,34 +117,40 @@ tick_count = 0
 ticks_on_borders = true
 focus_mode = 2
 
-[node name="enforce_8bit" type="CheckButton" parent="PanelContainer/VBoxContainer"]
+[node name="HBoxContainer 3" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 95.0
+margin/right = 915.0
+margin/bottom = 181.0
+alignment = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer 3"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 455.0
+margin/bottom = 86.0
+alignment = 0
+
+[node name="combine_streaks_btn" type="CheckButton" parent="PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 95.0
-margin/right = 915.0
-margin/bottom = 136.0
-custom_fonts/font = ExtResource( 3 )
-toggle_mode = true
-enabled_focus_mode = 2
-shortcut = null
-text = "8bit Mode"
-flat = false
-align = 0
-
-[node name="combine_streaks_btn" type="CheckButton" parent="PanelContainer/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 95.0
-margin/right = 915.0
-margin/bottom = 136.0
+margin/top = 0.0
+margin/right = 455.0
+margin/bottom = 41.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = true
 enabled_focus_mode = 2
@@ -148,16 +159,16 @@ text = "Combine Streaks"
 flat = false
 align = 0
 
-[node name="combine_loops_btn" type="CheckButton" parent="PanelContainer/VBoxContainer"]
+[node name="combine_loops_btn" type="CheckButton" parent="PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 140.0
-margin/right = 915.0
-margin/bottom = 181.0
+margin/top = 45.0
+margin/right = 455.0
+margin/bottom = 86.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = true
 enabled_focus_mode = 2
@@ -166,16 +177,46 @@ text = "Combine Loops"
 flat = false
 align = 0
 
-[node name="faster_in_loop_btn" type="CheckButton" parent="PanelContainer/VBoxContainer"]
+[node name="VBoxContainer 2" type="VBoxContainer" parent="PanelContainer/VBoxContainer/HBoxContainer 3"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 459.0
+margin/top = 0.0
+margin/right = 915.0
+margin/bottom = 86.0
+alignment = 0
+
+[node name="enforce_8bit" type="CheckButton" parent="PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer 2"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 185.0
-margin/right = 915.0
-margin/bottom = 226.0
+margin/top = 0.0
+margin/right = 456.0
+margin/bottom = 41.0
+custom_fonts/font = ExtResource( 3 )
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "8bit Mode"
+flat = false
+align = 0
+
+[node name="faster_in_loop_btn" type="CheckButton" parent="PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer 2"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 45.0
+margin/right = 456.0
+margin/bottom = 86.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = true
 enabled_focus_mode = 2
@@ -191,9 +232,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 230.0
+margin/top = 185.0
 margin/right = 915.0
-margin/bottom = 269.0
+margin/bottom = 224.0
 alignment = 0
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
@@ -289,9 +330,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 273.0
+margin/top = 228.0
 margin/right = 915.0
-margin/bottom = 312.0
+margin/bottom = 267.0
 alignment = 2
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer1"]
@@ -318,7 +359,7 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 3
 margin/left = 0.0
-margin/top = 316.0
+margin/top = 271.0
 margin/right = 915.0
 margin/bottom = 478.0
 
@@ -341,13 +382,13 @@ flat = false
 
 [connection signal="value_changed" from="PanelContainer/VBoxContainer/HBoxContainer 2/zoom_slider" to="." method="_on_zoom_slider_value_changed"]
 
-[connection signal="toggled" from="PanelContainer/VBoxContainer/enforce_8bit" to="." method="_on_enforce_8bit_btn_toggled"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer/combine_streaks_btn" to="." method="_on_combine_streaks_btn_toggled"]
 
-[connection signal="toggled" from="PanelContainer/VBoxContainer/combine_streaks_btn" to="." method="_on_combine_streaks_btn_toggled"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer/combine_loops_btn" to="." method="_on_combine_loops_btn_toggled"]
 
-[connection signal="toggled" from="PanelContainer/VBoxContainer/combine_loops_btn" to="." method="_on_combine_loops_btn_toggled"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer 2/enforce_8bit" to="." method="_on_enforce_8bit_btn_toggled"]
 
-[connection signal="toggled" from="PanelContainer/VBoxContainer/faster_in_loop_btn" to="." method="_on_faster_in_loop_btn_toggled"]
+[connection signal="toggled" from="PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer 2/faster_in_loop_btn" to="." method="_on_faster_in_loop_btn_toggled"]
 
 [connection signal="toggled" from="PanelContainer/VBoxContainer/HBoxContainer/speed_btn_1" to="." method="_on_speed_btn_1_toggled"]
 
@@ -360,3 +401,5 @@ flat = false
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer1/Button" to="." method="_on_Button_pressed"]
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/reset_btn" to="." method="_on_reset_btn_pressed"]
+
+

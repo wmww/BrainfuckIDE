@@ -1,13 +1,18 @@
 extends Control
 
 export(NodePath) var controller_node
+export(NodePath) var combine_streaks_node
+export(NodePath) var combine_loops_node
+export(NodePath) var faster_in_loop_node
+export(NodePath) var enforce_8bit_node
 var controller
 
 func _ready():
 	controller = get_node(controller_node)
-	get_node("PanelContainer/VBoxContainer/combine_streaks_btn").set_pressed(controller.combineStreak)
-	get_node("PanelContainer/VBoxContainer/combine_loops_btn").set_pressed(controller.combineLoop)
-	get_node("PanelContainer/VBoxContainer/faster_in_loop_btn").set_pressed(controller.fasterInLoop)
+	get_node(combine_streaks_node).set_pressed(controller.combineStreak)
+	get_node(combine_loops_node).set_pressed(controller.combineLoop)
+	get_node(faster_in_loop_node).set_pressed(controller.fasterInLoop)
+	get_node(enforce_8bit_node).set_pressed(controller.default_enforce_8bit)
 
 func _on_reset_btn_pressed():
 	controller.reset()

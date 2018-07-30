@@ -124,16 +124,16 @@ func reset(time):
 	moveMarker(time)
 
 func setZoom(newZoom):
-	var markPos = marker.get_pos().x
-	var dataPos = dataHolder.get_pos().x
+	var markPos = marker.posAnim.endVal.x
+	var dataPos = offsetAnim.endVal
 	var markPosScreen = dataPos + markPos*zoom
-	var newOffset = markPosScreen - markPos*newZoom
-	if newOffset > 0:
-		newOffset = 0
-	offsetAnim.start(0, 0)
-	dataHolder.set_pos(Vector2(0, elemSize.y/2.0))
+	var newDataPos = markPosScreen - markPos*newZoom
+	if newDataPos > 0:
+		newDataPos = 0
+	offsetAnim.start(newDataPos, 0)
 	zoom = newZoom
-	get_node("data_holder").set_scale(Vector2(newZoom, newZoom))
+	dataHolder.set_scale(Vector2(newZoom, newZoom))
+	moveMarker(0)
 
 func throwError(msg):
 	print("ERROR: " + msg)

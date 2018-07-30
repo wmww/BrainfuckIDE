@@ -75,15 +75,15 @@ func setVal(newVal, time):
 	elems[i].changeVal(data[i], time)
 	
 func setModValue(modVal):
-	if modVal < 2 && modVal != null:
-		return
+	if modVal != null && modVal < 2:
+		throwError("bad modVal: " + str(modVal));
 	modValue = modVal
 	
 	for index in range(0, data.size()):
 		var backup = data[index]
 		wrapValue(index)
 		if data[index] != backup:
-			elems[index].changeVal(data[index], 0)
+			elems[index].changeVal(data[index], 0.5)
 	
 func wrapValue(index):
 	if modValue == null:

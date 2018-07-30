@@ -20,6 +20,7 @@ var combineStreak = true
 var combineLoop = false
 var fasterInLoop = true
 const default_enforce_8bit = false
+const default_zoom = 0.8
 
 # the index in the source code that we are to run next
 # or the length of the source code array if we are done
@@ -42,6 +43,7 @@ func _ready():
 	reset()
 	dataManager = get_node(data_node)
 	terminal = get_node(terminal_node)
+	dataManager.setZoom(default_zoom)
 	set_process(true)
 
 func addBFSource(sourceIn):

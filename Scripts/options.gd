@@ -5,6 +5,7 @@ export(NodePath) var combine_streaks_node
 export(NodePath) var combine_loops_node
 export(NodePath) var faster_in_loop_node
 export(NodePath) var enforce_8bit_node
+export(NodePath) var zoom_slider
 var controller
 
 func _ready():
@@ -13,6 +14,7 @@ func _ready():
 	get_node(combine_loops_node).set_pressed(controller.combineLoop)
 	get_node(faster_in_loop_node).set_pressed(controller.fasterInLoop)
 	get_node(enforce_8bit_node).set_pressed(controller.default_enforce_8bit)
+	get_node(zoom_slider).set_value(controller.default_zoom)
 
 func _on_reset_btn_pressed():
 	controller.reset()
@@ -64,4 +66,5 @@ func _on_Button_pressed():
 	speed_btn_pressed(2)
 	
 func _on_zoom_slider_value_changed( value ):
-	controller.dataManager.setZoom(value)
+	if controller.dataManager:
+		controller.dataManager.setZoom(value)

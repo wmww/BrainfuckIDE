@@ -24,6 +24,7 @@ combine_streaks_node = NodePath("PanelContainer/VBoxContainer/HBoxContainer 3/VB
 combine_loops_node = NodePath("PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer/combine_loops_btn")
 faster_in_loop_node = NodePath("PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer 2/faster_in_loop_btn")
 enforce_8bit_node = NodePath("PanelContainer/VBoxContainer/HBoxContainer 3/VBoxContainer 2/enforce_8bit")
+zoom_slider = NodePath("PanelContainer/VBoxContainer/HBoxContainer 2/zoom_slider")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 

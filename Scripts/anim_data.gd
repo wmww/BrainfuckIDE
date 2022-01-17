@@ -13,7 +13,7 @@ func _init(startIn):
 	isDone = false
 
 func start(val, time):
-	startVal = get()
+	startVal = __get()
 	endVal = val
 	totalTime = time
 	currentTime = 0
@@ -24,7 +24,7 @@ func advance(delta):
 	if currentTime >= totalTime:
 		isDone = true
 
-func get():
+func __get():
 	if isDone || totalTime <= 0:
 		return endVal
 	else:
@@ -32,3 +32,4 @@ func get():
 
 func done():
 	return isDone
+

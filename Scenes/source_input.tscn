@@ -1,8 +1,8 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=30 format=2]
 
-[ext_resource path="res://Fonts/Droid-Reg-32.fnt" type="BitmapFont" id=1]
-[ext_resource path="res://Fonts/Inconsolata-Reg-64.fnt" type="BitmapFont" id=2]
-[ext_resource path="res://Fonts/Ubuntu-Bold-256.fnt" type="BitmapFont" id=3]
+[ext_resource path="res://Fonts/Droid-Reg-32.font" type="BitmapFont" id=1]
+[ext_resource path="res://Fonts/Inconsolata-Reg-64.font" type="BitmapFont" id=2]
+[ext_resource path="res://Fonts/Ubuntu-Bold-256.font" type="BitmapFont" id=3]
 [ext_resource path="res://Scripts/bf_snippets.gd" type="Script" id=4]
 
 [sub_resource type="GDScript" id=1]
@@ -139,475 +139,501 @@ func _on_text_entered( text ):
 
 [node name="source_input" type="VBoxContainer"]
 
-anchor/top = 2
-anchor/right = 1
-anchor/bottom = 1
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.75
-margin/right = 0.0
-margin/bottom = -27.0
+size_flags_horizontal = 1
+size_flags_vertical = 3
+margin_left = 0.0
+margin_top = 0.75
+margin_right = 0.0
+margin_bottom = 27.0
 alignment = 0
-script/script = SubResource( 1 )
+script = SubResource( 1 )
 controller = NodePath("../controller")
+mouse_filter = 0
 
 [node name="tabs" type="TabContainer" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1653.0
-margin/bottom = 350.0
+size_flags_horizontal = 1
+size_flags_vertical = 3
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 1653.0
+margin_bottom = 350.0
 custom_fonts/font = ExtResource( 1 )
 tab_align = 1
 tabs_visible = true
+mouse_filter = 0
 
 [node name="Quick Code" type="VBoxContainer" parent="tabs"]
 
-anchor/right = 1
-anchor/bottom = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 3
-margin/left = 4.0
-margin/top = 51.0
-margin/right = 4.0
-margin/bottom = 4.0
+size_flags_horizontal = 1
+size_flags_vertical = 3
+margin_left = 4.0
+margin_top = 51.0
+margin_right = -4.0
+margin_bottom = -4.0
 alignment = 0
+mouse_filter = 0
 
 [node name="edit_line" type="HBoxContainer" parent="tabs/Quick Code"]
 
-focus_neighbour/top = NodePath("focus_up")
-focus_neighbour/bottom = NodePath("focus_down")
+focus_neighbour_top = NodePath("focus_up")
+focus_neighbour_bottom = NodePath("focus_down")
 focus/ignore_mouse = false
 focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1645.0
-margin/bottom = 64.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 1645.0
+margin_bottom = 64.0
 alignment = 0
+mouse_filter = 0
 
 [node name="focus_up" type="Control" parent="tabs/Quick Code/edit_line"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 64.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 64.0
+mouse_filter = 0
 
 [node name="LineEdit" type="LineEdit" parent="tabs/Quick Code/edit_line"]
 
-focus_neighbour/top = NodePath("../focus_up")
-focus_neighbour/bottom = NodePath("../focus_down")
+focus_neighbour_top = NodePath("../focus_up")
+focus_neighbour_bottom = NodePath("../focus_down")
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 4.0
-margin/top = 0.0
-margin/right = 1568.0
-margin/bottom = 64.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+margin_left = 4.0
+margin_top = 0.0
+margin_right = 1568.0
+margin_bottom = 64.0
 custom_fonts/font = ExtResource( 2 )
-placeholder/text = "Brainfuck code"
-placeholder/alpha = 0.4
+placeholder_text = "Brainfuck code"
+placeholder_alpha = 0.4
 focus_mode = 2
-caret/caret_blink = false
-caret/caret_blink_speed = 0.65
+caret_blink = false
+caret_blink_speed = 0.65
+mouse_filter = 0
 
 [node name="Button" type="Button" parent="tabs/Quick Code/edit_line"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 1572.0
-margin/top = 0.0
-margin/right = 1641.0
-margin/bottom = 64.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 1572.0
+margin_top = 0.0
+margin_right = 1641.0
+margin_bottom = 64.0
 custom_fonts/font = ExtResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Run"
 flat = false
+mouse_filter = 0
 
 [node name="focus_down" type="Control" parent="tabs/Quick Code/edit_line"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 1645.0
-margin/top = 0.0
-margin/right = 1645.0
-margin/bottom = 64.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 1645.0
+margin_top = 0.0
+margin_right = 1645.0
+margin_bottom = 64.0
+mouse_filter = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="tabs/Quick Code"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 68.0
-margin/right = 1645.0
-margin/bottom = 295.0
+size_flags_horizontal = 1
+size_flags_vertical = 3
+margin_left = 0.0
+margin_top = 68.0
+margin_right = 1645.0
+margin_bottom = 295.0
 alignment = 1
+mouse_filter = 0
 
 [node name="minus_btn" type="Button" parent="tabs/Quick Code/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 140.0
-margin/bottom = 227.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 140.0
+margin_bottom = 227.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "-"
 flat = false
+mouse_filter = 0
 
 [node name="plus_btn" type="Button" parent="tabs/Quick Code/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 144.0
-margin/top = 0.0
-margin/right = 284.0
-margin/bottom = 227.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 144.0
+margin_top = 0.0
+margin_right = 284.0
+margin_bottom = 227.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "+"
 flat = false
+mouse_filter = 0
 
 [node name="left_btn" type="Button" parent="tabs/Quick Code/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 288.0
-margin/top = 0.0
-margin/right = 428.0
-margin/bottom = 227.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 288.0
+margin_top = 0.0
+margin_right = 428.0
+margin_bottom = 227.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "<"
 flat = false
+mouse_filter = 0
 
 [node name="right_btn" type="Button" parent="tabs/Quick Code/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 432.0
-margin/top = 0.0
-margin/right = 572.0
-margin/bottom = 227.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 432.0
+margin_top = 0.0
+margin_right = 572.0
+margin_bottom = 227.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = ">"
 flat = false
+mouse_filter = 0
 
 [node name="dot_btn" type="Button" parent="tabs/Quick Code/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 576.0
-margin/top = 0.0
-margin/right = 716.0
-margin/bottom = 227.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 576.0
+margin_top = 0.0
+margin_right = 716.0
+margin_bottom = 227.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "."
 flat = false
+mouse_filter = 0
 
 [node name="comma_btn" type="Button" parent="tabs/Quick Code/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 720.0
-margin/top = 0.0
-margin/right = 860.0
-margin/bottom = 227.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 720.0
+margin_top = 0.0
+margin_right = 860.0
+margin_bottom = 227.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = ","
 flat = false
+mouse_filter = 0
 
 [node name="open_btn" type="Button" parent="tabs/Quick Code/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 864.0
-margin/top = 0.0
-margin/right = 1004.0
-margin/bottom = 227.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 864.0
+margin_top = 0.0
+margin_right = 1004.0
+margin_bottom = 227.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "["
 flat = false
+mouse_filter = 0
 
 [node name="close_btn" type="Button" parent="tabs/Quick Code/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 1008.0
-margin/top = 0.0
-margin/right = 1148.0
-margin/bottom = 227.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 1008.0
+margin_top = 0.0
+margin_right = 1148.0
+margin_bottom = 227.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "]"
 flat = false
+mouse_filter = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="tabs/Quick Code/HBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 1152.0
-margin/top = 0.0
-margin/right = 1645.0
-margin/bottom = 227.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 1152.0
+margin_top = 0.0
+margin_right = 1645.0
+margin_bottom = 227.0
 alignment = 0
+mouse_filter = 0
 
 [node name="GridContainer" type="GridContainer" parent="tabs/Quick Code/HBoxContainer/VBoxContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 493.0
-margin/bottom = 227.0
+size_flags_horizontal = 1
+size_flags_vertical = 3
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 493.0
+margin_bottom = 227.0
 columns = 2
+mouse_filter = 0
 
 [node name="Label" type="Label" parent="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 1
-margin/left = 0.0
-margin/top = 39.0
-margin/right = 95.0
-margin/bottom = 72.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 0.0
+margin_top = 39.0
+margin_right = 95.0
+margin_bottom = 72.0
 custom_fonts/font = ExtResource( 1 )
 text = "Add:"
 align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+mouse_filter = 1
 
 [node name="add_textbox" type="LineEdit" parent="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 99.0
-margin/top = 23.0
-margin/right = 493.0
-margin/bottom = 87.0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+margin_left = 99.0
+margin_top = 23.0
+margin_right = 493.0
+margin_bottom = 87.0
 custom_fonts/font = ExtResource( 2 )
-placeholder/alpha = 0.6
+placeholder_alpha = 0.6
 focus_mode = 2
-caret/caret_blink = false
-caret/caret_blink_speed = 0.65
-script/script = SubResource( 2 )
+caret_blink = false
+caret_blink_speed = 0.65
+script = SubResource( 2 )
+mouse_filter = 0
 
 [node name="Label1" type="Label" parent="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 1
-margin/left = 0.0
-margin/top = 154.0
-margin/right = 95.0
-margin/bottom = 187.0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+margin_left = 0.0
+margin_top = 154.0
+margin_right = 95.0
+margin_bottom = 187.0
 custom_fonts/font = ExtResource( 1 )
 text = "Move: "
 align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+mouse_filter = 1
 
 [node name="move_textbox" type="LineEdit" parent="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 99.0
-margin/top = 138.0
-margin/right = 493.0
-margin/bottom = 202.0
+size_flags_horizontal = 1
+size_flags_vertical = 0
+margin_left = 99.0
+margin_top = 138.0
+margin_right = 493.0
+margin_bottom = 202.0
 custom_fonts/font = ExtResource( 2 )
-placeholder/alpha = 0.6
+placeholder_alpha = 0.6
 focus_mode = 2
-caret/caret_blink = false
-caret/caret_blink_speed = 0.65
-script/script = SubResource( 2 )
+caret_blink = false
+caret_blink_speed = 0.65
+script = SubResource( 2 )
+mouse_filter = 0
 
 [node name="Source Edit" type="HBoxContainer" parent="tabs"]
 
 editor/display_folded = true
-visibility/visible = false
-anchor/right = 1
-anchor/bottom = 1
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 focus/ignore_mouse = false
 focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 3
-margin/left = 4.0
-margin/top = 51.0
-margin/right = 4.0
-margin/bottom = 4.0
+size_flags_horizontal = 1
+size_flags_vertical = 3
+margin_left = 4.0
+margin_top = 51.0
+margin_right = -4.0
+margin_bottom = -4.0
 alignment = 0
+mouse_filter = 0
 
 [node name="textbox" type="TextEdit" parent="tabs/Source Edit"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 943.0
-margin/bottom = 128.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 943.0
+margin_bottom = 128.0
 custom_fonts/font = ExtResource( 1 )
 syntax_highlighting = false
 show_line_numbers = true
 highlight_all_occurrences = false
-caret/block_caret = true
-caret/caret_blink = false
-caret/caret_blink_speed = 0.65
+caret_block_mode = true
+caret_blink = false
+caret_blink_speed = 0.65
+mouse_filter = 0
 
 [node name="go_btn" type="Button" parent="tabs/Source Edit"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 3
-margin/left = 947.0
-margin/top = 44.0
-margin/right = 1016.0
-margin/bottom = 83.0
+size_flags_horizontal = 1
+size_flags_vertical = 3
+margin_left = 947.0
+margin_top = 44.0
+margin_right = 1016.0
+margin_bottom = 83.0
 custom_fonts/font = ExtResource( 1 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 text = "Run"
 flat = false
+mouse_filter = 0
 
 [node name="Snippets" type="ScrollContainer" parent="tabs"]
 
 editor/display_folded = true
-visibility/visible = false
-anchor/right = 1
-anchor/bottom = 1
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 4.0
-margin/top = 51.0
-margin/right = 4.0
-margin/bottom = 4.0
-scroll/horizontal = false
-scroll/vertical = true
-script/script = ExtResource( 4 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+margin_left = 4.0
+margin_top = 51.0
+margin_right = -4.0
+margin_bottom = -4.0
+scroll_horizontal_enabled = false
+scroll_vertical_enabled = true
+script = ExtResource( 4 )
 root_node = NodePath("../..")
+mouse_filter = 0
 
 [node name="box" type="VBoxContainer" parent="tabs/Snippets"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = false
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1645.0
-margin/bottom = 295.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 1645.0
+margin_bottom = 295.0
 alignment = 0
+mouse_filter = 0
 
-[connection signal="focus_enter" from="tabs/Quick Code/edit_line/focus_up" to="." method="_on_focus_up_focus_enter"]
+[connection signal="focus_entered" from="tabs/Quick Code/edit_line/focus_up" to="." method="_on_focus_up_focus_enter" binds=[  ]]
 
-[connection signal="text_entered" from="tabs/Quick Code/edit_line/LineEdit" to="." method="_on_LineEdit_text_entered"]
+[connection signal="text_entered" from="tabs/Quick Code/edit_line/LineEdit" to="." method="_on_LineEdit_text_entered" binds=[  ]]
 
-[connection signal="pressed" from="tabs/Quick Code/edit_line/Button" to="." method="quick_code_entered"]
+[connection signal="pressed" from="tabs/Quick Code/edit_line/Button" to="." method="quick_code_entered" binds=[  ]]
 
-[connection signal="focus_enter" from="tabs/Quick Code/edit_line/focus_down" to="." method="_on_focus_down_focus_enter"]
+[connection signal="focus_entered" from="tabs/Quick Code/edit_line/focus_down" to="." method="_on_focus_down_focus_enter" binds=[  ]]
 
-[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/minus_btn" to="." method="_on_minus_btn_pressed"]
+[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/minus_btn" to="." method="_on_minus_btn_pressed" binds=[  ]]
 
-[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/plus_btn" to="." method="_on_plus_btn_pressed"]
+[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/plus_btn" to="." method="_on_plus_btn_pressed" binds=[  ]]
 
-[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/left_btn" to="." method="_on_left_btn_pressed"]
+[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/left_btn" to="." method="_on_left_btn_pressed" binds=[  ]]
 
-[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/right_btn" to="." method="_on_right_btn_pressed"]
+[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/right_btn" to="." method="_on_right_btn_pressed" binds=[  ]]
 
-[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/dot_btn" to="." method="_on_dot_btn_pressed"]
+[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/dot_btn" to="." method="_on_dot_btn_pressed" binds=[  ]]
 
-[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/comma_btn" to="." method="_on_comma_btn_pressed"]
+[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/comma_btn" to="." method="_on_comma_btn_pressed" binds=[  ]]
 
-[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/open_btn" to="." method="_on_open_btn_pressed"]
+[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/open_btn" to="." method="_on_open_btn_pressed" binds=[  ]]
 
-[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/close_btn" to="." method="_on_close_btn_pressed"]
+[connection signal="pressed" from="tabs/Quick Code/HBoxContainer/close_btn" to="." method="_on_close_btn_pressed" binds=[  ]]
 
-[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" method="_on_text_entered"]
+[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" method="_on_text_entered" binds=[  ]]
 
-[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="." method="_on_add_textbox_text_entered"]
+[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="." method="_on_add_textbox_text_entered" binds=[  ]]
 
-[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" method="_on_text_entered"]
+[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" method="_on_text_entered" binds=[  ]]
 
-[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="." method="_on_move_textbox_text_entered"]
+[connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="." method="_on_move_textbox_text_entered" binds=[  ]]
 
-[connection signal="pressed" from="tabs/Source Edit/go_btn" to="." method="source_entered"]
-
-
+[connection signal="pressed" from="tabs/Source Edit/go_btn" to="." method="source_entered" binds=[  ]]

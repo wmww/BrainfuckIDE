@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/data_display.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/source_input.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Scripts/controller.gd" type="Script" id=5]
 
 [sub_resource type="GDScript" id=1]
-
 script/source = "extends Control
 
 # class member variables go here, for example:
@@ -17,6 +16,7 @@ export (Vector2) var myMinSize
 
 func _ready():
 	get_viewport().connect(\"size_changed\",self,\"hasBeenResized\")
+	hasBeenResized()
 	pass
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -25,7 +25,7 @@ func _ready():
 	#print(get_minimum_size())
 
 func hasBeenResized():
-	var winSize = get_viewport().get_rect().size
+	var winSize = get_viewport().get_visible_rect().size
 	var newScale2D = winSize / myMinSize
 	var newScale1D = min(newScale2D.x, newScale2D.y)
 	newScale1D = floor(newScale1D * 8) / 8.0
@@ -41,130 +41,89 @@ func _on_Control_resized():
 [node name="root" type="Node"]
 
 [node name="Control" type="Control" parent="."]
-
-rect/min_size = Vector2( 1660, 1280 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 1660.0
-margin/bottom = 1280.0
-script/script = SubResource( 1 )
+margin_right = 1660.0
+margin_bottom = 1280.0
+rect_min_size = Vector2( 1660, 1280 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 myMinSize = Vector2( 1660, 1280 )
 
 [node name="Panel" type="Panel" parent="Control"]
-
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="data_display" parent="Control" instance=ExtResource( 1 )]
-
-anchor/bottom = 2
-margin/left = 80.0
-margin/top = 80.0
-margin/right = 80.0
-margin/bottom = 0.399727
+anchor_bottom = 0.0
+margin_left = 80.0
+margin_top = 80.0
+margin_right = 80.0
+margin_bottom = 0.399727
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
-
-anchor/top = 2
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.399842
-margin/right = 0.0
-margin/bottom = 0.0
-alignment = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 500.0
+mouse_filter = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="source_input" parent="Control/VBoxContainer" instance=ExtResource( 2 )]
-
-anchor/top = 0
-anchor/right = 0
-anchor/bottom = 0
-margin/top = 0.0
-margin/right = 1660.0
-margin/bottom = 374.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 0.0
+margin_right = 1660.0
+margin_bottom = 380.0
 controller = NodePath("../../controller")
 
 [node name="Panel" type="Control" parent="Control/VBoxContainer"]
-
-rect/min_size = Vector2( 12, 12 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 378.0
-margin/right = 1660.0
-margin/bottom = 390.0
+margin_top = 384.0
+margin_right = 1660.0
+margin_bottom = 396.0
+rect_min_size = Vector2( 12, 12 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 3
-margin/left = 0.0
-margin/top = 394.0
-margin/right = 1660.0
-margin/bottom = 769.0
-alignment = 0
+margin_top = 400.0
+margin_right = 1660.0
+margin_bottom = 780.0
+mouse_filter = 0
+size_flags_vertical = 3
 
 [node name="terminal" parent="Control/VBoxContainer/HBoxContainer" instance=ExtResource( 3 )]
-
-anchor/top = 0
-anchor/bottom = 0
-size_flags/horizontal = 3
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 820.0
-margin/bottom = 375.0
+anchor_top = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 820.0
+margin_bottom = 380.0
+size_flags_horizontal = 3
 
 [node name="Panel1" type="Control" parent="Control/VBoxContainer/HBoxContainer"]
-
-rect/min_size = Vector2( 12, 12 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 824.0
-margin/top = 0.0
-margin/right = 836.0
-margin/bottom = 375.0
+margin_left = 824.0
+margin_right = 836.0
+margin_bottom = 380.0
+rect_min_size = Vector2( 12, 12 )
 
 [node name="options" parent="Control/VBoxContainer/HBoxContainer" instance=ExtResource( 4 )]
-
-anchor/left = 0
-anchor/top = 0
-anchor/right = 0
-anchor/bottom = 0
-size_flags/horizontal = 3
-margin/left = 840.0
-margin/top = 0.0
-margin/right = 1660.0
-margin/bottom = 375.0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 840.0
+margin_top = 0.0
+margin_right = 1660.0
+margin_bottom = 380.0
+size_flags_horizontal = 3
 controller_node = NodePath("../../../controller")
 
 [node name="controller" type="Node" parent="Control"]
-
-script/script = ExtResource( 5 )
+script = ExtResource( 5 )
 data_node = NodePath("../data_display")
 terminal_node = NodePath("../VBoxContainer/HBoxContainer/terminal")
 
 [connection signal="resized" from="Control" to="Control" method="_on_Control_resized"]
-
-

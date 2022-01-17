@@ -7,17 +7,17 @@ func _ready():
 	set_focus_mode(Control.FOCUS_ALL)
 	pass
 
-func _input_event(event):
+func _gui_input(event):
 	"""
-	if event.type == InputEvent.KEY:
+	if event is InputEventKey:
 		print("got key event")
 		addInput(OS.get_scancode_string(event.scancode))
-		addInput(RawArray([event.unicode]).get_string_from_utf8())
+		addInput(PoolByteArray([event.unicode]).get_string_from_utf8())
 		accept_event()
 	"""
 	
 	"""
-	if (event.type == InputEvent.KEY):
+	if (event is InputEventKey):
 		if(OS.get_scancode_string(event.scancode).length() == 1):
 			
 			print("got event")
@@ -29,15 +29,15 @@ func _input_event(event):
 			accept_event()
 	"""
 	
-	if event.type == InputEvent.KEY && event.is_pressed():
-		if event.scancode == KEY_RETURN:
+	if event is InputEventKey && event.is_pressed():
+		if event.scancode == KEY_ENTER:
 			applyInput()
 		elif event.scancode == KEY_BACKSPACE:
 			if !currentLine.empty():
 				currentLine = currentLine.substr(0, currentLine.length() - 1)
 				updateLabel()
 		else:
-			addInput(RawArray([event.unicode]).get_string_from_utf8())
+			addInput(PoolByteArray([event.unicode]).get_string_from_utf8())
 		accept_event()
 
 func addInput(text):

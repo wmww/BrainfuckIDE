@@ -19,8 +19,8 @@ func _ready():
 	data=[]
 	elems=[]
 	
-	dataHolder = get_node("data_holder")
-	marker = get_node("data_holder/marker")
+	dataHolder = $data_holder
+	marker = $data_holder/marker
 	
 	for i in range(0, 24):
 		data.append(0)

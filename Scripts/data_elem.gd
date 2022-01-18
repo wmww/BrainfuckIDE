@@ -13,8 +13,8 @@ func _ready():
 func _process(delta):
 	if !labelAnim.done():
 		labelAnim.advance(delta)
-		var l1 = get_node("ctrl1")
-		var l0 = get_node("ctrl0")
+		var l1 = $ctrl1
+		var l0 = $ctrl0
 		if labelAnim.done():
 			l1.hide()
 			l0.get_child(0).set_text(str(round(val)))

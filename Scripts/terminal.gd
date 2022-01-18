@@ -28,7 +28,6 @@ func _gui_input(event):
 				print(OS.get_scancode_string(event.scancode).to_lower())
 			accept_event()
 	"""
-	
 	if event is InputEventKey && event.is_pressed():
 		if event.scancode == KEY_ENTER:
 			applyInput()
@@ -54,4 +53,4 @@ func applyInput():
 	updateLabel()
 
 func updateLabel():
-	get_node("label").set_bbcode(history + currentLine)
+	$label.set_bbcode(history + currentLine)

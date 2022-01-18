@@ -37,10 +37,10 @@ func _on_faster_in_loop_btn_toggled( pressed ):
 
 func speed_btn_pressed(btn):
 	isModifyingOtherButtonStates = true
-	get_node("PanelContainer/VBoxContainer/HBoxContainer/speed_btn_1").set_pressed(btn == 1)
-	get_node("PanelContainer/VBoxContainer/HBoxContainer/speed_btn_2").set_pressed(btn == 2)
-	get_node("PanelContainer/VBoxContainer/HBoxContainer/speed_btn_3").set_pressed(btn == 3)
-	get_node("PanelContainer/VBoxContainer/HBoxContainer/speed_btn_4").set_pressed(btn == 4)
+	$PanelContainer/VBoxContainer/HBoxContainer/speed_btn_2.set_pressed(btn == 2)
+	$PanelContainer/VBoxContainer/HBoxContainer/speed_btn_1.set_pressed(btn == 1)
+	$PanelContainer/VBoxContainer/HBoxContainer/speed_btn_3.set_pressed(btn == 3)
+	$PanelContainer/VBoxContainer/HBoxContainer/speed_btn_4.set_pressed(btn == 4)
 	
 	if btn == 1:
 		controller.baseOpTime = controller.defaultBaseOpTime / 0.5

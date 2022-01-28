@@ -17,7 +17,7 @@ func _ready():
 	addSnippetsToList()
 
 func addSnippetsToList():
-	var box = get_node("box")
+	var box = $box
 	for i in snippets:
 		var item = ItemScene.instance()
 		item.setData(i[0], i[1], self)

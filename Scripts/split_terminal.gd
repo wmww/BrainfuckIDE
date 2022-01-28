@@ -9,16 +9,16 @@ func _ready():
 
 func addOutput(text):
 	if history.length() < 8000:
-		history+=text
+		history += text
 		updateLabel()
 
 func updateLabel():
-	get_node("VBoxContainer/Control/MarginContainer/label").set_bbcode(history+"_")
+	$VBoxContainer/Control/MarginContainer/label.set_bbcode(history+"_")
 
 func _on_LineEdit_text_entered(text):
 	input += text + "\n"
 	history += text + "\n"
-	get_node("VBoxContainer/LineEdit").set_text("")
+	$VBoxContainer/LineEdit.set_text("")
 	updateLabel()
 
 func popInput():

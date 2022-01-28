@@ -19,8 +19,8 @@ func _ready():
 	data=[]
 	elems=[]
 	
-	dataHolder = get_node("data_holder")
-	marker = get_node("data_holder/marker")
+	dataHolder = $data_holder
+	marker = $data_holder/marker
 	
 	for i in range(0, 24):
 		data.append(0)
@@ -32,7 +32,7 @@ func _ready():
 func _process(delta):
 	if !offsetAnim.done():
 		offsetAnim.advance(delta)
-		dataHolder.set_pos(Vector2(offsetAnim.get(), elemSize.y/2.0))
+		dataHolder.set_position(Vector2(offsetAnim.__get(), elemSize.y/2.0))
 
 func movePtr(offset, time):
 	i+=offset
@@ -54,11 +54,11 @@ func moveMarker(time):
 	marker.moveTo(pos, time)
 	
 	var maxRight = get_size().x - (pos.x + elemSize.x/2) * zoom
-	if dataHolder.get_pos().x > maxRight:
+	if dataHolder.get_position().x > maxRight:
 		offsetAnim.start(maxRight, time)
 	
 	var maxLeft = (- pos.x + elemSize.x/2) * zoom
-	if dataHolder.get_pos().x < maxLeft:
+	if dataHolder.get_position().x < maxLeft:
 		offsetAnim.start(maxLeft, time)
 
 func addVal(amount, time):
@@ -97,7 +97,7 @@ func wrapValue(index):
 		data[index] = (data[index] % modValue + modValue) % modValue
 	
 func getValAscii():
-	return RawArray([data[i]]).get_string_from_ascii()
+	return PoolByteArray([data[i]]).get_string_from_ascii()
 	
 func setValAscii(newVal, time):
 	setVal(newVal.to_ascii()[0], time)
@@ -108,7 +108,7 @@ func blinkOp(opText, time):
 func addElemDisplay():
 	var elem = ElemScene.instance()
 	dataHolder.add_child(elem)
-	elem.set_pos(Vector2(elems.size()*elemSize.x, -elemSize.y/2))
+	elem.set_position(Vector2(elems.size()*elemSize.x, -elemSize.y/2))
 	elem.set_size(elemSize)
 	elems.push_back(elem)
 
@@ -137,3 +137,4 @@ func setZoom(newZoom):
 
 func throwError(msg):
 	print("ERROR: " + msg)
+

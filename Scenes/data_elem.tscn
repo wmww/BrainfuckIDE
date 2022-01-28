@@ -1,90 +1,57 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/data_elem.gd" type="Script" id=1]
-[ext_resource path="res://Fonts/Ubuntu-Bold-256.fnt" type="BitmapFont" id=2]
+[ext_resource path="res://Fonts/Ubuntu-Bold-256.font" type="BitmapFont" id=2]
 
 [node name="data_elem" type="Control"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 400.0
-margin/bottom = 400.0
-script/script = ExtResource( 1 )
+margin_right = 400.0
+margin_bottom = 400.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Panel" type="Panel" parent="."]
-
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = -8.0
-margin/top = 30.0
-margin/right = 8.0
-margin/bottom = 45.0
+anchor_bottom = 1.0
+margin_left = -8.0
+margin_top = 30.0
+margin_right = 8.0
+margin_bottom = -45.0
 
 [node name="ctrl0" type="Control" parent="."]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 200.0
-margin/top = 200.0
-margin/right = 240.0
-margin/bottom = 240.0
+margin_left = 200.0
+margin_top = 200.0
+margin_right = 240.0
+margin_bottom = 240.0
 
 [node name="label" type="Label" parent="ctrl0"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = -400.0
-margin/top = -200.0
-margin/right = 400.0
-margin/bottom = 200.0
-custom_fonts/font = ExtResource( 2 )
+margin_left = -400.0
+margin_top = -200.0
+margin_right = 400.0
+margin_bottom = 200.0
+mouse_filter = 1
+size_flags_vertical = 0
 custom_colors/font_color = Color( 0.184314, 1, 0.921569, 1 )
+custom_fonts/font = ExtResource( 2 )
 text = "0"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
 
 [node name="ctrl1" type="Control" parent="."]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 200.0
-margin/top = 200.0
-margin/right = 240.0
-margin/bottom = 240.0
+margin_left = 200.0
+margin_top = 200.0
+margin_right = 240.0
+margin_bottom = 240.0
 
 [node name="label" type="Label" parent="ctrl1"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = -400.0
-margin/top = -200.0
-margin/right = 400.0
-margin/bottom = 200.0
-custom_fonts/font = ExtResource( 2 )
+margin_left = -400.0
+margin_top = -200.0
+margin_right = 400.0
+margin_bottom = 200.0
+mouse_filter = 1
+size_flags_vertical = 0
 custom_colors/font_color = Color( 0.1875, 1, 0.923828, 1 )
+custom_fonts/font = ExtResource( 2 )
 text = "0"
 align = 1
 valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-

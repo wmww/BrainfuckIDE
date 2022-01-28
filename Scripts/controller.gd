@@ -19,7 +19,7 @@ var skipToEnd = false
 var combineStreak = true
 var combineLoop = false
 var fasterInLoop = true
-const default_enforce_8bit = false
+const default_enforce_8bit = true
 const default_zoom = 0.8
 
 # the index in the source code that we are to run next
@@ -186,6 +186,8 @@ func findCloseBrace(start):
 	return i
 
 func setModValue(modVal):
+	if !dataManager:
+		dataManager = get_node(data_node)
 	dataManager.setModValue(modVal)
 
 #func calcTime():

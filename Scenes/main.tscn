@@ -36,24 +36,6 @@ func hasBeenResized():
 
 func _on_Control_resized():
 	hasBeenResized()
-
-func _input(event):
-	if event.is_action_pressed(\"open_file\"):
-		$fileopen.popup()
-	elif event.is_action_pressed(\"save_file\"):
-		$filesave.popup()
-
-func _on_filesave_file_selected(path: String) -> void:
-	var file: File = File.new()
-	file.open(path, File.WRITE)
-	file.store_string($\"VBoxContainer/source_input/tabs/Source Edit/textbox\".text)
-	file.close()
-
-func _on_fileopen_file_selected(path: String) -> void:
-	var file: File = File.new()
-	file.open(path, File.READ)
-	$\"VBoxContainer/source_input/tabs/Source Edit/textbox\".text = file.get_as_text()
-	file.close()
 "
 
 [node name="root" type="Node"]
@@ -144,34 +126,4 @@ script = ExtResource( 5 )
 data_node = NodePath("../data_display")
 terminal_node = NodePath("../VBoxContainer/HBoxContainer/terminal")
 
-[node name="filesave" type="FileDialog" parent="Control"]
-margin_left = 160.0
-margin_top = 160.0
-margin_right = 1500.0
-margin_bottom = 1120.0
-resizable = true
-access = 2
-current_dir = "/"
-current_path = "/"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="fileopen" type="FileDialog" parent="Control"]
-margin_left = 160.0
-margin_top = 160.0
-margin_right = 1500.0
-margin_bottom = 1120.0
-window_title = "Open a File"
-resizable = true
-mode = 0
-access = 2
-current_dir = "/"
-current_path = "/"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [connection signal="resized" from="Control" to="Control" method="_on_Control_resized"]
-[connection signal="file_selected" from="Control/filesave" to="Control" method="_on_filesave_file_selected"]
-[connection signal="file_selected" from="Control/fileopen" to="Control" method="_on_fileopen_file_selected"]

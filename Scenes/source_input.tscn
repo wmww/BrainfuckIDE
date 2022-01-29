@@ -12,9 +12,16 @@ export(NodePath) var controller
 
 var quickCodeHistory = []
 var quickCodeHistoryIndex = null
+var fileSelectMode = null
 
 func _ready():
 	get_node(\"tabs/Quick Code/edit_line/LineEdit\").grab_focus()
+
+func _input(event):
+	if event.is_action_pressed(\"open_file\"):
+		_on_load_btn_pressed()
+	elif event.is_action_pressed(\"save_file\"):
+		_on_save_btn_pressed()
 
 func addCodeToController(code):
 	if controller and get_node(controller):
@@ -25,7 +32,6 @@ func addCodeToController(code):
 func source_entered():
 	var textbox=get_node(\"tabs/Source Edit/textbox\")
 	addCodeToController(textbox.get_text())
-	#textbox.set_text(\"\")
 
 func quick_code_entered():
 	var lineEdit = get_node(\"tabs/Quick Code/edit_line/LineEdit\")
@@ -38,38 +44,29 @@ func quick_code_entered():
 func _on_LineEdit_text_entered(text):
 	quick_code_entered()
 
-
 func _on_minus_btn_pressed():
 	addCodeToController('-')
-
 
 func _on_plus_btn_pressed():
 	addCodeToController('+')
 
-
 func _on_left_btn_pressed():
 	addCodeToController('<')
-
 
 func _on_right_btn_pressed():
 	addCodeToController('>')
 
-
 func _on_dot_btn_pressed():
 	addCodeToController('.')
-
 
 func _on_comma_btn_pressed():
 	addCodeToController(',')
 
-
 func _on_open_btn_pressed():
 	addCodeToController('[')
 
-
 func _on_close_btn_pressed():
 	addCodeToController(']')
-
 
 func _on_add_textbox_text_entered( text ):
 	var code = \"\"
@@ -112,11 +109,35 @@ func quickCodeHistoryMove(amount):
 		lineEdit.set_text(quickCodeHistory[quickCodeHistoryIndex])
 
 func _on_focus_up_focus_enter():
-	print(\"up!\")
 	quickCodeHistoryMove(1)
 
 func _on_focus_down_focus_enter():
 	quickCodeHistoryMove(-1)
+
+func _on_load_btn_pressed():
+	fileSelectMode = \"load\"
+	$file_select.window_title = \"Open\"
+	$file_select.mode = FileDialog.MODE_OPEN_FILE
+	$file_select.popup()
+
+func _on_save_btn_pressed():
+	fileSelectMode = \"save\"
+	$file_select.window_title = \"Save\"
+	$file_select.mode = FileDialog.MODE_SAVE_FILE
+	$file_select.popup()
+
+func _on_file_select_file_selected(path):
+	var file: File = File.new()
+	if fileSelectMode == \"save\":
+		file.open(path, File.WRITE)
+		file.store_string($\"tabs/Source Edit/textbox\".text)
+		file.close()
+	elif fileSelectMode == \"load\":
+		file.open(path, File.READ)
+		$\"tabs/Source Edit/textbox\".text = file.get_as_text()
+		file.close()
+	else:
+		print(\"got file, but not in a valid file select mode\")
 "
 
 [sub_resource type="GDScript" id=2]
@@ -310,6 +331,7 @@ custom_fonts/font = ExtResource( 2 )
 script = SubResource( 2 )
 
 [node name="Source Edit" type="HBoxContainer" parent="tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -327,13 +349,33 @@ custom_fonts/font = ExtResource( 1 )
 show_line_numbers = true
 caret_block_mode = true
 
-[node name="go_btn" type="Button" parent="tabs/Source Edit"]
+[node name="VBoxContainer" type="VBoxContainer" parent="tabs/Source Edit"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="go_btn" type="Button" parent="tabs/Source Edit/VBoxContainer"]
 margin_left = 1576.0
 margin_right = 1645.0
 margin_bottom = 571.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 1 )
 text = "Run"
+
+[node name="load_btn" type="Button" parent="tabs/Source Edit/VBoxContainer"]
+margin_left = 6304.0
+margin_right = 6373.0
+margin_bottom = 571.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Open"
+
+[node name="save_btn" type="Button" parent="tabs/Source Edit/VBoxContainer"]
+margin_left = 3152.0
+margin_right = 3221.0
+margin_bottom = 571.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "Save"
 
 [node name="Snippets" type="ScrollContainer" parent="tabs"]
 visible = false
@@ -356,6 +398,21 @@ mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="file_select" type="FileDialog" parent="."]
+margin_left = 160.0
+margin_top = 160.0
+margin_right = 1500.0
+margin_bottom = 1120.0
+window_title = ""
+resizable = true
+mode = 0
+access = 2
+current_dir = "/"
+current_path = "/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="focus_entered" from="tabs/Quick Code/edit_line/focus_up" to="." method="_on_focus_up_focus_enter"]
 [connection signal="text_entered" from="tabs/Quick Code/edit_line/LineEdit" to="." method="_on_LineEdit_text_entered"]
 [connection signal="pressed" from="tabs/Quick Code/edit_line/Button" to="." method="quick_code_entered"]
@@ -372,4 +429,9 @@ size_flags_vertical = 3
 [connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/add_textbox" method="_on_text_entered"]
 [connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="." method="_on_move_textbox_text_entered"]
 [connection signal="text_entered" from="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" to="tabs/Quick Code/HBoxContainer/VBoxContainer/GridContainer/move_textbox" method="_on_text_entered"]
-[connection signal="pressed" from="tabs/Source Edit/go_btn" to="." method="source_entered"]
+[connection signal="pressed" from="tabs/Source Edit/VBoxContainer/go_btn" to="." method="source_entered"]
+[connection signal="pressed" from="tabs/Source Edit/VBoxContainer/load_btn" to="." method="source_entered"]
+[connection signal="pressed" from="tabs/Source Edit/VBoxContainer/load_btn" to="." method="_on_load_btn_pressed"]
+[connection signal="pressed" from="tabs/Source Edit/VBoxContainer/save_btn" to="." method="source_entered"]
+[connection signal="pressed" from="tabs/Source Edit/VBoxContainer/save_btn" to="." method="_on_save_btn_pressed"]
+[connection signal="file_selected" from="file_select" to="." method="_on_file_select_file_selected"]

@@ -16,7 +16,7 @@ __Standalone builds__ for Linux, Windows and Mac available [here](https://github
 * Optional 8bit mode
 
 ## Contributing
-Pull requests welcome! All you need to do to get started is clone this repo and download the [Godot game engine](https://downloads.tuxfamily.org/godotengine/2.1.5/) (NOTE: you currently need Godot 2. For porting to godot 3 see [#4](https://github.com/wmww/BrainfuckIDE/issues/4)). If you haven't used it before, Godot has integrated code and UI editors, and its scripting language, GDScript, is quite similar to Python (Don't listen to GitHub, this is *NOT* a C++ project). Any of the [help wanted issues](https://github.com/wmww/BrainfuckIDE/labels/help%20wanted) would be great to start out on.
+Pull requests welcome! All you need to do to get started is clone this repo and download the [Godot game engine](https://downloads.tuxfamily.org/godotengine/2.1.5/) (NOTE: you currently need Godot 2. For porting to godot 3 see [#4](https://github.com/wmww/BrainfuckIDE/issues/4)). If you haven't used it before, Godot has integrated code and UI editors, and its scripting language, GDScript, is quite similar to Python. Any of the [help wanted issues](https://github.com/wmww/BrainfuckIDE/labels/help%20wanted) would be great to start out on.
 
 ## Screenshots
 ![screenshot 0](Assets/screenshot_0.png)
